@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = path.dirname(fileURLToPath(import.meta.url));
+const sourceRoot = path.dirname(fileURLToPath(import.meta.url));
 const domains = [
   ['Aerospace', 'Aerospace'],
   ['Biomédical', 'Biomedical'],
@@ -14,6 +14,7 @@ const domains = [
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
 
 // Run after editing the home feed to refresh the six standalone domain pages.
+export function generateDomainPages(root = sourceRoot) {
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const [domain, slug] of domains) {
   let html = home.replace('<title>Notes</title>', `<title>${escape(domain)} — Notes</title>`)
@@ -32,3 +33,5 @@ for (const [domain, slug] of domains) {
   fs.writeFileSync(path.join(directory, 'index.html'), html);
 }
 console.log('Generated six domain pages.');
+}
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) generateDomainPages();

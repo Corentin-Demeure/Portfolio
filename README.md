@@ -1,80 +1,79 @@
 # Carnet ouvert
 
-Portfolio statique en HTML, CSS et JavaScript. Aucune dépendance, installation,
-compilation, bibliothèque externe ou serveur applicatif.
+Portfolio statique en HTML, CSS et JavaScript. **Seules les notes sont écrites en Markdown.** GitHub Actions les transforme en HTML et publie le site à chaque push sur `main`.
 
-## Ouvrir le site
+Site : https://corentin-demeure.github.io/Portfolio/
 
-Ouvrir `index.html` dans un navigateur. Pour une prévisualisation HTTP facultative,
-servir ce dossier avec n’importe quel serveur statique.
+## Modifier une note sur son PC
 
-## Fichiers à modifier
+1. Ouvrir un fichier dans `notes/`, par exemple `notes/parcours-aerospatial.md`, avec un éditeur de texte.
+2. Modifier le texte Markdown sous le bloc de métadonnées.
+3. Enregistrer, committer et pousser sur `main` :
 
-- `index.html` : accueil et cartes des articles.
-- `notes/<nom>/index.html` : texte et métadonnées HTML de chaque article.
-- `assets/style.css` : styles, responsive et thème sombre selon le navigateur.
-- `assets/notes.js` : catalogue de recherche (titre, domaine, tags, texte et URL).
-- `assets/search.js` : filtres de recherche, sans dépendances.
-- `assets/app.js` : résultats de recherche et filtres par domaine.
-- `images/` : médias locaux.
+```sh
+git add notes/
+git commit -m "Mettre à jour mes notes"
+git push
+```
 
-Le contenu et les menus sont du vrai HTML, lisible même sans JavaScript.
-La recherche utilise un catalogue local : après modification d’un article,
-mettre aussi à jour son entrée dans `assets/notes.js`, notamment le champ `text`.
-Ce petit travail manuel remplace la génération automatique d’Astro.
+GitHub Actions reconstruit les pages, les tags et le catalogue de recherche, puis publie le résultat. Aucun HTML de note ni catalogue de recherche ne doit être modifié à la main. Les anciennes adresses `notes/<nom>/index.html` sont conservées.
+
+Exemple :
+
+```markdown
+---
+title: "Mon parcours dans l’aérospatial"
+domain: "Aerospace"
+tags: [aerospace, parcours]
+eyebrow: "Aerospace / Parcours"
+related: [satellites]
+---
+
+## Mon expérience
+
+Un paragraphe avec du **gras**, de l’*italique* et un [lien](https://example.com).
+
+![Ma classe dans l’ISS](../../images/iss-my-class.jpg)
+
+- Une première idée
+- Une deuxième idée
+```
+
+Le titre principal est généré depuis `title`. Les images restent dans `images/` ; leurs chemins sont relatifs à la page publiée, comme dans l’exemple. Un lien vers une autre source, `[Satellites](satellites.md)`, est automatiquement converti en lien HTML. `related` contient les noms de notes sans `.md`, pour les liens associés dans la colonne de droite.
 
 ## Ajouter une note
 
-1. Copier une page vers `notes/<nouveau-nom>/index.html`.
-2. Modifier le titre, la description, les tags et le texte dans `article.prose`.
-3. Ajouter son entrée dans `assets/notes.js` avec son texte recherchable et son
-   URL relative `notes/<nouveau-nom>/index.html`.
-4. Ajouter sa carte dans `index.html`, ses liens dans les menus et les éventuels
-   liens entrants dans les pages concernées.
+Créer `notes/mon-sujet.md` avec les métadonnées ci-dessus. Les domaines disponibles sont `Aerospace`, `Biomédical`, `Agronomie`, `Biologie spéculative`, `Travail manuel`, `Urbanisme & durabilité` et `Transversal`. La note est automatiquement publiée et ajoutée à la recherche. Pour l’ajouter aux cartes d’accueil et au menu, modifier aussi `index.html` et `templates/note.html`.
 
-Les liens sont relatifs : le dossier fonctionne à la racine d’un hébergeur,
-sous `/portfolio/` ou directement depuis un fichier.
+## Prévisualiser avant de pousser (facultatif)
 
-## Recherche et tags
+Installer Node.js 24 et pnpm, puis :
 
-## Pages par domaine
+```sh
+pnpm install --frozen-lockfile
+pnpm test
+pnpm preview
+```
 
-Chaque domaine possède une page HTML autonome : `/Portfolio/Aerospace/`,
-`/Portfolio/Biomedical/`, `/Portfolio/Agronomie/`,
-`/Portfolio/Biologie-speculative/`, `/Portfolio/Travail-manuel/` et
-`/Portfolio/Urbanisme/`. GitHub Pages ajoute le slash final aux adresses de dossiers.
-Les anciens liens `index.html?domain=…` redirigent vers ces pages en conservant
-la recherche et l’ancre.
+Ouvrir http://localhost:4173/Portfolio/. Relancer la prévisualisation après une modification. `pnpm build` produit les fichiers publiables dans `dist/`, qui n’est pas suivi par Git.
 
-Après modification des cartes, des introductions ou de la navigation dans
-`index.html`, exécuter `node generate-domain-pages.mjs` et publier les pages
-générées avec le reste du site. Node sert uniquement à rafraîchir ces copies ;
-le site publié reste entièrement statique et chaque page fonctionne sans JavaScript.
+## Organisation
 
-## Recherche et tags
+- `notes/*.md` : sources éditables des sept notes.
+- `templates/note.html` : mise en page commune des notes.
+- `index.html` : accueil, cartes et navigation.
+- `assets/style.css`, `assets/app.js`, `assets/search.js` : apparence et recherche.
+- `images/` : photos et illustrations.
+- `build.mjs` : conversion Markdown et catalogue de recherche.
+- `generate-domain-pages.mjs` : pages des six domaines, reconstruites pendant le build.
+- `.github/workflows/pages.yml` : tests, génération et publication automatique.
 
-- `satellites` : recherche dans le texte intégral.
-- `"passage à l’échelle"` : expression exacte.
-- `#biologie` ou `tag:biologie` : tag et ses sous-tags.
-- `tag:biologie -tag:projet` : exclusions.
-- Plusieurs termes ou tags se combinent avec un ET.
+Les pages de domaine gardent leurs adresses : `/Portfolio/Aerospace/`, `/Portfolio/Biomedical/`, `/Portfolio/Agronomie/`, `/Portfolio/Biologie-speculative/`, `/Portfolio/Travail-manuel/` et `/Portfolio/Urbanisme/`. Les anciens liens `?domain=…` redirigent vers ces pages.
 
-Les recherches sont partageables dans l’URL. Échap efface la recherche ;
-le bouton Retour restaure la recherche précédente.
-Les tags sont des liens HTML tels que `../../index.html?q=tag%3A%23biologie`.
+## Publication GitHub Pages
 
-## Publier sur GitHub Pages
+Dans `Corentin-Demeure/Portfolio` → Settings → Pages, la source doit être **GitHub Actions**. Le workflow publie uniquement `dist/` après avoir vérifié les pages et leurs liens.
 
-Dans `Corentin-Demeure/Portfolio` : Settings → Pages → Source : **Deploy from a branch**,
-branche **main**, dossier **/(root)**. `.nojekyll` permet de servir les fichiers
-statiques directement. Aucun workflow de compilation n’est nécessaire.
+## Recherche
 
-Adresse attendue après activation : https://corentin-demeure.github.io/Portfolio/
-
-## Contenus conservés
-
-Les six notes du dépôt sont conservées. La note locale « Mon parcours dans
-l’aérospatial » et sa photo sont ajoutées sous `notes/parcours-aerospatial/`.
-L’essai d’origine reste sous `notes/satellites/`.
-Les anciennes sources Astro restent dans l’historique Git et la copie locale
-originale, qui n’a pas été remplacée.
+La recherche porte sur le texte des notes et leurs tags. Exemples : `satellites`, `"passage à l’échelle"`, `#biologie`, `tag:biologie -tag:projet`. Les recherches restent partageables par URL ; Échap efface la recherche.
