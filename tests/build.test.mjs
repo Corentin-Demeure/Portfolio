@@ -79,7 +79,7 @@ test('aerospace cards link to the nested article and show the ISS class photo', 
   assert.match(html, /data-domain="Aerospace"[^>]*>Aérospatial<\/a>/);
  }
  const css = fs.readFileSync(path.join(output,'assets/style.css'),'utf8');
- assert.ok(!css.includes('body:has('));
+ assert.ok(css.includes('body .shell'));
 });
 
 test('every page includes the thin attribution footer and contact links', () => {
@@ -93,4 +93,17 @@ test('every page includes the thin attribution footer and contact links', () => 
   assert.match(html, /mailto:etu51424@henallux.be/);
   assert.match(html, /assets\/logos\/henallux.svg/);
  }
+});
+
+test('domain backgrounds publish without private medical content', () => {
+ build();
+ const html=fs.readFileSync(path.join(output,'Biomedical/index.html'),'utf8');
+ assert.match(html, /<article class="prose">\s*<\/article>/);
+ assert.ok(!fs.existsSync(path.join(output,'images/cs-3d-imaging-dents.png')));
+ const catalogue=fs.readFileSync(path.join(output,'assets/notes.js'),'utf8');
+ assert.ok(!catalogue.includes('radio dentaire'));
+ const css=fs.readFileSync(path.join(output,'assets/style.css'),'utf8');
+ assert.ok(css.includes('rgba(36, 57, 59, .95)'));
+ assert.ok(css.includes('background-size: 100% 100%'));
+ for (const photo of ['Midjourney-unveils-full-body-ultrasonic-scanner-aimed-at-transforming-medical-imaging.jpg','urbanana building slice.jpg']) assert.ok(fs.existsSync(path.join(output,'assets/photos',photo)));
 });

@@ -675,3 +675,15 @@ body .shell { display: flex; flex-direction: column; }
 .site-footer .henallux-contact { gap: 10px; }
 .site-footer .henallux-contact img { display: block; width: 18px; height: 21px; object-fit: contain; }
 @media (max-width: 650px) { .site-footer { justify-content: center; padding: 5px 10px; } }
+
+/* Domain backgrounds; all other pages retain the shared aurora theme. */
+body:has(.feed-tabs a[data-domain="Biomédical"][aria-current="page"]) {
+  background-image: url("./photos/Midjourney-unveils-full-body-ultrasonic-scanner-aimed-at-transforming-medical-imaging.jpg");
+}
+body:has(.feed-tabs a[data-domain="Biomédical"][aria-current="page"]) .shell {
+  background: rgba(36, 57, 59, .95); /* Dark grey-teal, 5% transparent. */
+}
+body:has(.feed-tabs a[data-domain="Agronomie"][aria-current="page"]) {
+  background-image: url("./photos/urbanana%20building%20slice.jpg");
+  background-size: 100% 100%;
+}
