@@ -6,7 +6,8 @@ import { Marked } from 'marked';
 import { generateDomainPages } from './generate-domain-pages.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const noteUrl = slug => slug === 'parcours-aerospatial' ? 'Aerospace/' : `notes/${slug}/index.html`;
+const pageRoutes = {'parcours-aerospatial':'Aerospace', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
+const noteUrl = slug => pageRoutes[slug] ? pageRoutes[slug]+'/' : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
   Aerospace: 'Aerospace', 'Biomédical': 'Biomedical', Agronomie: 'Agronomie',
@@ -58,20 +59,21 @@ export function build() {
     const values = {
       title: escape(note.title), description: escape(plain(note.html).slice(0, 160)),
       domainUrl: '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html'),
-      article: `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n<p class="eyebrow">${escape(note.eyebrow || note.domain)}</p>\n<h1>${escape(note.title)}</h1>\n${note.html}`,
+      article: note.html.trim() ? `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n<p class="eyebrow">${escape(note.eyebrow || note.domain)}</p>\n<h1>${escape(note.title)}</h1>\n${note.html}` : '',
       related,
     };
     let html = layout.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key]);
     html = html.replace(/<a\b[^>]*data-domain="([^"]*)"[^>]*>/g, (link, domain) => domain === escape(note.domain) ? link.replace('>', ' aria-current="page">') : link);
     html = html.replace(new RegExp(`(<a )(href="../../notes/${note.slug}/index.html")`), '$1class="selected" $2');
-    if (note.url === 'Aerospace/') {
+    if (note.url.endsWith('/')) {
       html = html.replace(/<a class="back"[^>]*>[^<]*<\/a>/, '')
         .replaceAll('../../', '../');
     }
+    if (!note.html.trim()) html = html.replace(/<aside class="connections">[\s\S]*?<\/aside>/, '');
     const dest = path.join(output, note.url, note.url.endsWith('/') ? 'index.html' : '');
     fs.mkdirSync(path.dirname(dest), {recursive:true}); fs.writeFileSync(dest, html);
   }
-  const catalogue = notes.map(({title,domain,tags,text,url}) => ({title,domain,tags,text,url}));
+  const catalogue = notes.filter(note => note.html.trim()).map(({title,domain,tags,text,url}) => ({title,domain,tags,text,url}));
   fs.writeFileSync(path.join(output, 'assets/notes.js'), '// Generated from notes/*.md.\nwindow.PortfolioNotes = '+JSON.stringify(catalogue,null,2)+';\n');
   console.log(`Built ${notes.length} Markdown notes into dist/.`);
   return notes;

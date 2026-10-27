@@ -77,3 +77,13 @@ Dans `Corentin-Demeure/Portfolio` → Settings → Pages, la source doit être *
 ## Recherche
 
 La recherche porte sur le texte des notes et leurs tags. Exemples : `satellites`, `"passage à l’échelle"`, `#biologie`, `tag:biologie -tag:projet`. Les recherches restent partageables par URL ; Échap efface la recherche.
+
+## Onglets vides à compléter
+
+Seul le parcours aérospatial contient actuellement du texte, avec sa miniature dans Tout. Les cinq autres onglets lisent directement les fichiers Markdown ci-dessous ; écrire une phrase après le bloc `---` puis pousser suffit. Les fichiers vides ne sont pas affichés dans la recherche.
+
+- Biomédical : `notes/biomedical.md`
+- Agronomie : `notes/migration-craw.md`
+- Biologie spéculative : `notes/biologie-speculative.md`
+- Urbanisme : `notes/louvain-la-neuve.md`
+- Travail manuel : `notes/travail-manuel.md`

@@ -10,7 +10,7 @@ test('Markdown notes produce working pages, navigation, images and search', () =
   assert.equal(notes.length, 6);
   const walk = dir => fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry => entry.isDirectory() ? walk(path.join(dir,entry.name)) : [path.join(dir,entry.name)]);
   const pages = walk(output).filter(file => file.endsWith('.html'));
-  assert.equal(pages.length, 12);
+  assert.equal(pages.length, 7);
   for (const file of pages) {
     const html = fs.readFileSync(file,'utf8');
     assert.ok(!html.includes('{{'), file+' contains unresolved placeholders');
@@ -30,11 +30,11 @@ test('Markdown notes produce working pages, navigation, images and search', () =
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(!html.includes('Penser les satellites à l’échelle'));
     assert.ok(!html.includes('<summary>Aerospace</summary>'));
-    assert.ok(!html.includes('class="media-card" data-domain="Aerospace"'));
+    if (file !== path.join(output, 'index.html')) assert.ok(!html.includes('class="media-card"'));
   }
   const sandbox = {window:{}};
   vm.runInNewContext(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'),sandbox);
-  assert.equal(sandbox.window.PortfolioNotes.length, 6);
+  assert.equal(sandbox.window.PortfolioNotes.length, 1);
   assert.ok(sandbox.window.PortfolioNotes.some(note => note.text.includes('Eurospace')));
 });
 
@@ -46,11 +46,25 @@ test('editing only Markdown updates the rendered note and search catalogue', () 
     build();
     assert.match(fs.readFileSync(path.join(output,'Aerospace/index.html'),'utf8'), /id="modification-de-vérification"/);
     assert.match(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'), /Markdown-autoupdate-9274/);
-    assert.match(fs.readFileSync(path.join(output,'Aerospace/index.html'),'utf8'), /href="..\/notes\/biomedical\/index.html"/);
+    assert.match(fs.readFileSync(path.join(output,'Aerospace/index.html'),'utf8'), /href="..\/Biomedical\/"/);
     fs.writeFileSync(source,original.replace('domain: "Aerospace"','domain: "Unknown"'));
     assert.throws(build,/Invalid title, domain or tags/);
   } finally {
     fs.writeFileSync(source,original);
     build();
   }
+});
+
+ test('empty domain Markdown stays blank and becomes visible when edited', () => {
+ const source = new URL('../notes/biomedical.md', import.meta.url);
+ const original = fs.readFileSync(source, 'utf8');
+ try {
+  build();
+  const page = path.join(output, 'Biomedical/index.html');
+  assert.match(fs.readFileSync(page, 'utf8'), /<article class="prose">\s*<\/article>/);
+  fs.writeFileSync(source, original + '\nMa première phrase biomédicale.\n');
+  build();
+  assert.match(fs.readFileSync(page, 'utf8'), /Ma première phrase biomédicale/);
+  assert.match(fs.readFileSync(path.join(output, 'assets/notes.js'), 'utf8'), /Ma première phrase biomédicale/);
+ } finally { fs.writeFileSync(source, original); build(); }
 });
