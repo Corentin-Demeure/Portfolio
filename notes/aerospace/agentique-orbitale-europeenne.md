@@ -3,9 +3,10 @@ title: "Agentique orbitale européenne"
 domain: "Aerospace"
 tags: ["aerospacelab","agentics","cloud-computing"]
 related: []
-thumbnail: "images/iss-my-class.png"
+thumbnail: "images/obsidian/38ae925e1cb876cdfc19.png"
 ---
 
+![Pasted image 20261028003041.png](../../images/obsidian/38ae925e1cb876cdfc19.png)
 L'agentique orbitale d'Aerospacelab ce serait l'équivalent de SpaceX Starmind.
 Une fois des datacenters dans l'espace, il est possible d'avoir des swarms d'agents dans l'espace qui communique et se copie entre satellites sur différentes couches orbitales, comme un oignon. Pour comprendre l'intérêt d'avoir une large présence sur ces hautes orbites et orbites cislunaires, cette vidéo récente sur l'importance de l'espace cislunaire en politique étrangère américaine est pertinente. [](https://www.youtube.com/watch?v=kdpOdSMzXTA)
 
