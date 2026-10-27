@@ -555,3 +555,79 @@ summary::marker{color:var(--muted)}
 .note-video{background:#080a0e}
 
 }
+
+/* Aurora background and translucent A4 sheet: Tout and Aerospace only. */
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) {
+  color-scheme: light;
+  --ink: #142c42;
+  --paper: #dcebf8;
+  --line: #8eabc766;
+  --muted: #425b72;
+  background: #07131d url("./photos/iss%20aurora.jpg") center / cover fixed no-repeat;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .shell {
+  width: 210mm;
+  max-width: calc(100% - 32px);
+  min-height: 297mm;
+  margin: 32px auto;
+  background: rgba(205, 225, 245, .75); /* 25% transparent; text remains opaque. */
+  border: 1px solid #d7eaff80;
+  box-shadow: 0 16px 64px #0006;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .sidebar {
+  inset: 32px auto auto max(12px, calc(50% - 105mm - 236px));
+  width: 220px;
+  max-height: calc(100vh - 64px);
+  background: rgba(205, 225, 245, .75);
+  border: 1px solid #d7eaff80;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .feed-tabs {
+  background: rgba(205, 225, 245, .75);
+  border-bottom-color: var(--line);
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .feed-tabs a {
+  color: #304d68;
+  text-shadow: none;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .feed-tabs a::before {
+  background: #dcebf880;
+  border: 1px solid #8eabc766;
+  border-radius: 10px 10px 0 0;
+  inset: 0 3px;
+  filter: none;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .feed-tabs a[aria-current]::before {
+  background: #e7f2ffb3;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .article-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) input {
+  background: #edf6ffcc;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) :is(.eyebrow, .note-tags a, .inline-tag, .connections p) {
+  color: #36516a;
+}
+@media (max-width: 1280px) {
+  body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .sidebar {
+    position: relative;
+    inset: auto;
+    width: 210mm;
+    max-width: calc(100% - 32px);
+    max-height: none;
+    margin: 16px auto;
+    padding: 12px 16px;
+  }
+  body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .sidebar nav {
+    margin-top: 6px;
+  }
+  body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .shell {
+    margin: 16px auto;
+  }
+}
+@media (max-width: 650px) {
+  body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .shell {
+    max-width: calc(100% - 20px);
+    min-height: calc(100vh - 150px);
+  }
+}
