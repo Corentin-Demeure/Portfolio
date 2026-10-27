@@ -16,7 +16,7 @@ git commit -m "Mettre à jour mes notes"
 git push
 ```
 
-GitHub Actions reconstruit les pages, les tags et le catalogue de recherche, puis publie le résultat. Aucun HTML de note ni catalogue de recherche ne doit être modifié à la main. Les anciennes adresses `notes/<nom>/index.html` sont conservées.
+GitHub Actions reconstruit les pages, les tags et le catalogue de recherche, puis publie le résultat. Aucun HTML de note ni catalogue de recherche ne doit être modifié à la main. Les autres notes conservent leurs adresses `notes/<nom>/index.html`. Le fichier `notes/parcours-aerospatial.md` alimente directement `/Portfolio/Aerospace/`, unique page du portfolio aérospatial, sans miniature ni sous-menu.
 
 Exemple :
 
@@ -59,7 +59,7 @@ Ouvrir http://localhost:4173/Portfolio/. Relancer la prévisualisation après un
 
 ## Organisation
 
-- `notes/*.md` : sources éditables des sept notes.
+- `notes/*.md` : sources éditables des six notes.
 - `templates/note.html` : mise en page commune des notes.
 - `index.html` : accueil, cartes et navigation.
 - `assets/style.css`, `assets/app.js`, `assets/search.js` : apparence et recherche.

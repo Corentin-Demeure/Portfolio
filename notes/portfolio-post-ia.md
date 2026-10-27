@@ -3,7 +3,7 @@ title: "Construire à l’ère de l’IA"
 domain: "Transversal"
 tags: ["portfolio","systèmes","IA"]
 eyebrow: "Transversal / Manifeste"
-related: ["louvain-la-neuve","migration-craw","parcours-aerospatial","satellites"]
+related: ["louvain-la-neuve","migration-craw","parcours-aerospatial"]
 ---
 
 ## Une identité qui traverse les disciplines

@@ -6,6 +6,7 @@ import { Marked } from 'marked';
 import { generateDomainPages } from './generate-domain-pages.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
+const noteUrl = slug => slug === 'parcours-aerospatial' ? 'Aerospace/' : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
   Aerospace: 'Aerospace', 'Biomédical': 'Biomedical', Agronomie: 'Agronomie',
@@ -32,12 +33,12 @@ export function build() {
       },
       link({href, title, tokens}) {
         // Markdown sources may link to another .md; published links keep the old URLs.
-        if (href && !/^(?:[a-z]+:|\/\/)/i.test(href)) href = href.replace(/(?:\.\.\/)?([a-z0-9-]+)\.md(?=[?#]|$)/, '../$1/index.html');
+        if (href && !/^(?:[a-z]+:|\/\/)/i.test(href)) href = href.replace(/(?:\.\.\/)?([a-z0-9-]+)\.md(?=[?#]|$)/, (_, slug) => '../../'+noteUrl(slug));
         return `<a href="${escape(href || '')}"${title ? ` title="${escape(title)}"` : ''}>${this.parser.parseInline(tokens)}</a>`;
       },
     }});
     const html = markdown.parse(content);
-    return {...data, slug, html, text: data.title+' '+data.domain+' '+plain(html), url: `notes/${slug}/index.html`};
+    return {...data, slug, html, text: data.title+' '+data.domain+' '+plain(html), url: noteUrl(slug)};
   });
   if (!notes.length) throw new Error('No Markdown notes found.');
   const layout = fs.readFileSync(path.join(root, 'templates/note.html'), 'utf8');
@@ -46,12 +47,13 @@ export function build() {
   fs.rmSync(output, {recursive:true, force:true});
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', '.nojekyll']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
+  generateDomainPages(output);
   for (const note of notes) {
     const tags = note.tags.map(tag => `<a href="../../index.html?q=${encodeURIComponent('tag:#'+tag.toLowerCase())}">#${escape(tag)}</a>`).join('');
     const related = (note.related || []).map(slug => {
       const target = notes.find(item => item.slug === slug);
       if (!target) throw new Error(`Unknown related note ${slug} in ${note.slug}`);
-      return `<a class="related" href="../${slug}/index.html">${escape(target.title)} ↗</a>`;
+      return `<a class="related" href="../../${target.url}">${escape(target.title)} ↗</a>`;
     }).join('\n') || '<p>Pas encore de lien entrant.</p>';
     const values = {
       title: escape(note.title), description: escape(plain(note.html).slice(0, 160)),
@@ -62,12 +64,15 @@ export function build() {
     let html = layout.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key]);
     html = html.replace(/<a\b[^>]*data-domain="([^"]*)"[^>]*>/g, (link, domain) => domain === escape(note.domain) ? link.replace('>', ' aria-current="page">') : link);
     html = html.replace(new RegExp(`(<a )(href="../../notes/${note.slug}/index.html")`), '$1class="selected" $2');
-    const dest = path.join(output, note.url);
+    if (note.url === 'Aerospace/') {
+      html = html.replace(/<a class="back"[^>]*>[^<]*<\/a>/, '')
+        .replaceAll('../../', '../');
+    }
+    const dest = path.join(output, note.url, note.url.endsWith('/') ? 'index.html' : '');
     fs.mkdirSync(path.dirname(dest), {recursive:true}); fs.writeFileSync(dest, html);
   }
   const catalogue = notes.map(({title,domain,tags,text,url}) => ({title,domain,tags,text,url}));
   fs.writeFileSync(path.join(output, 'assets/notes.js'), '// Generated from notes/*.md.\nwindow.PortfolioNotes = '+JSON.stringify(catalogue,null,2)+';\n');
-  generateDomainPages(output);
   console.log(`Built ${notes.length} Markdown notes into dist/.`);
   return notes;
 }
