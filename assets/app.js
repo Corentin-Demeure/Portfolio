@@ -12,6 +12,19 @@
   const main = document.querySelector('main');
   const tabs = Array.from(document.querySelectorAll('.feed-tabs a'));
 
+  // Keep bookmarks using the former domain query working on GitHub Pages.
+  const legacyParams = new URLSearchParams(location.search);
+  const legacyDomain = legacyParams.get('domain');
+  const legacyTab = tabs.find(tab => legacyDomain && tab.dataset.domain === legacyDomain);
+  if (legacyTab) {
+    const target = new URL(legacyTab.href);
+    legacyParams.delete('domain');
+    target.search = legacyParams.toString();
+    target.hash = location.hash;
+    location.replace(target.href);
+    return;
+  }
+
   function tagUrl(tag) {
     const url = new URL(home);
     url.searchParams.set('q', 'tag:#' + tagKey(tag));
@@ -28,7 +41,7 @@
     main.hidden = searching;
 
     if (main.classList.contains('feed')) {
-      const requested = params.get('domain') || '';
+      const requested = main.dataset.domain || '';
       const selected = tabs.some(tab => tab.dataset.domain === requested) ? requested : '';
       for (const tab of tabs) {
         if (tab.dataset.domain === selected) tab.setAttribute('aria-current', 'page');

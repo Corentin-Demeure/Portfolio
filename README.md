@@ -37,6 +37,22 @@ sous `/portfolio/` ou directement depuis un fichier.
 
 ## Recherche et tags
 
+## Pages par domaine
+
+Chaque domaine possède une page HTML autonome : `/Portfolio/Aerospace/`,
+`/Portfolio/Biomedical/`, `/Portfolio/Agronomie/`,
+`/Portfolio/Biologie-speculative/`, `/Portfolio/Travail-manuel/` et
+`/Portfolio/Urbanisme/`. GitHub Pages ajoute le slash final aux adresses de dossiers.
+Les anciens liens `index.html?domain=…` redirigent vers ces pages en conservant
+la recherche et l’ancre.
+
+Après modification des cartes, des introductions ou de la navigation dans
+`index.html`, exécuter `node generate-domain-pages.mjs` et publier les pages
+générées avec le reste du site. Node sert uniquement à rafraîchir ces copies ;
+le site publié reste entièrement statique et chaque page fonctionne sans JavaScript.
+
+## Recherche et tags
+
 - `satellites` : recherche dans le texte intégral.
 - `"passage à l’échelle"` : expression exacte.
 - `#biologie` ou `tag:biologie` : tag et ses sous-tags.
