@@ -19,7 +19,9 @@ const plain = html => html.replace(/<[^>]+>/g, ' ').replace(/&(?:amp|lt|gt|quot|
 
 export function build() {
   const noteFiles = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? noteFiles(path.join(dir,e.name)) : e.name.endsWith('.md') ? [path.relative(path.join(root,'notes'),path.join(dir,e.name))] : []);
-  const notes = noteFiles(path.join(root,'notes')).sort().map(name => {
+  // Imported copies of the personal journey share the existing Mon-parcours page.
+  const journeyCopies = new Set(['portfolio-aerospatial.md', 'mon-parcours-aerospatial.md']);
+  const notes = noteFiles(path.join(root,'notes')).filter(name => !(path.dirname(name) === 'aerospace' && journeyCopies.has(path.basename(name)))).sort().map(name => {
     const {data, content} = matter(fs.readFileSync(path.join(root, 'notes', name), 'utf8'));
     if (typeof data.title !== 'string' || !data.title.trim() || !Object.hasOwn(domains, data.domain) || !Array.isArray(data.tags) || data.tags.some(tag => typeof tag !== 'string')) throw new Error(`Invalid title, domain or tags in ${name}`);
     if (data.related !== undefined && (!Array.isArray(data.related) || data.related.some(slug => typeof slug !== 'string'))) throw new Error(`Invalid related list in ${name}`);
