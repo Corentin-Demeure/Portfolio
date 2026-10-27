@@ -7,10 +7,10 @@ import { build, output } from '../build.mjs';
 
 test('Markdown notes produce working pages, navigation, images and search', () => {
   const notes = build();
-  assert.equal(notes.length, 6);
+  assert.ok(notes.length >= 6);
   const walk = dir => fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry => entry.isDirectory() ? walk(path.join(dir,entry.name)) : [path.join(dir,entry.name)]);
   const pages = walk(output).filter(file => file.endsWith('.html'));
-  assert.equal(pages.length, 8);
+  assert.equal(pages.length, notes.length + 2);
   for (const file of pages) {
     const html = fs.readFileSync(file,'utf8');
     assert.ok(!html.includes('{{'), file+' contains unresolved placeholders');
@@ -34,7 +34,7 @@ test('Markdown notes produce working pages, navigation, images and search', () =
   }
   const sandbox = {window:{}};
   vm.runInNewContext(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'),sandbox);
-  assert.equal(sandbox.window.PortfolioNotes.length, 1);
+  assert.equal(sandbox.window.PortfolioNotes.length, notes.filter(note => note.html.trim()).length);
   assert.ok(sandbox.window.PortfolioNotes.some(note => note.text.includes('Eurospace')));
 });
 

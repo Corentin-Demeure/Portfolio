@@ -95,3 +95,59 @@ L’onglet « Aérospatial » conserve l’adresse /Portfolio/Aerospace/. Il pr�
 Pour ajouter un article, créer notes/mon-article.md avec title, domain: Aerospace, tags, related et thumbnail: images/ma-photo.jpg. Écrire le texte sous les métadonnées et ajouter l’image dans images/. Après le push, la miniature apparaît automatiquement dans Tout et Aérospatial ; l’article est publié à /Portfolio/Aerospace/mon-article/.
 
 Tous les onglets et articles utilisent le même fond ISS, la même feuille bleue et le texte blanc.
+
+## Import Obsidian par onglet
+
+Obsidian est la source des notes. L’import fonctionne à sens unique, **Obsidian → portfolio** : il ne modifie jamais les originaux et ne propage aucune suppression.
+
+### Dossiers
+
+Le dossier source est `C:\Liberté\Ecole\Carnet diaristique et Notes\Projects\Portfolio` et le dépôt du portfolio est `C:\Liberté\Portfolio`.
+
+Chaque sous-dossier `Portfolio-<onglet>` alimente `notes/<onglet>` dans le dépôt. Par exemple :
+
+- Source : `C:\Liberté\Ecole\Carnet diaristique et Notes\Projects\Portfolio\Portfolio-Aerospace`
+- Copies pour le site : `C:\Liberté\Portfolio\notes\aerospace`
+
+Les onglets reconnus sont `aerospace`, `biomedical`, `agronomie`, `biologie-speculative`, `travail-manuel` et `urbanisme`. La variable d’environnement `OBSIDIAN_PORTFOLIO` permet de changer le dossier source sur un autre ordinateur.
+
+### Miniature d’une note
+
+La première ligne contient les hashtags ; la deuxième contient le lien vers l’image utilisée comme miniature :
+
+```markdown
+#aerospacelab #aerospace
+![[mon-image.png]]
+
+Le texte de la note commence ici.
+```
+
+Le format `![Miniature](mon-image.png)` est également accepté pour une image locale. Les images référencées sont copiées dans `images/obsidian`. Sans lien de miniature à cet emplacement, la note utilise l’image ISS par défaut.
+
+### Commandes
+
+Depuis un terminal ouvert dans `C:\Liberté\Portfolio` :
+
+```sh
+npm run sync:obsidian
+```
+
+Importe les notes et leurs images uniquement.
+
+```sh
+npm run build:obsidian
+```
+
+Importe les notes et leurs images, puis reconstruit le site dans `dist/`.
+
+```sh
+npm run watch:obsidian
+```
+
+Actualise les copies toutes les cinq secondes tant que le terminal reste ouvert. Arrêter avec `Ctrl+C`. Cette commande ne reconstruit pas le site et ne publie rien ; exécuter ensuite `npm run build:obsidian` pour générer les pages.
+
+### Protection des copies et publication
+
+Une copie modifiée manuellement dans le dépôt bloque son écrasement à l’import. Le fichier `.obsidian-import.json` mémorise les empreintes des copies, sans chemin privé. Si une note source est supprimée ou renommée, l’ancienne copie est conservée et reste publiée tant qu’elle n’est pas retirée explicitement du dépôt.
+
+Pour publier, committer les notes importées, les images et `.obsidian-import.json`, puis pousser sur GitHub. Le build GitHub utilise les copies déjà importées ; il n’accède pas au coffre Obsidian local. L’import et la surveillance ne déclenchent aucune publication.

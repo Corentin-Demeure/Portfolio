@@ -18,11 +18,12 @@ const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '
 const plain = html => html.replace(/<[^>]+>/g, ' ').replace(/&(?:amp|lt|gt|quot|#39);/g, entity => ({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'"}[entity])).replace(/\s+/g, ' ').trim();
 
 export function build() {
-  const notes = fs.readdirSync(path.join(root, 'notes')).filter(name => name.endsWith('.md')).sort().map(name => {
+  const noteFiles = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? noteFiles(path.join(dir,e.name)) : e.name.endsWith('.md') ? [path.relative(path.join(root,'notes'),path.join(dir,e.name))] : []);
+  const notes = noteFiles(path.join(root,'notes')).sort().map(name => {
     const {data, content} = matter(fs.readFileSync(path.join(root, 'notes', name), 'utf8'));
     if (typeof data.title !== 'string' || !data.title.trim() || !Object.hasOwn(domains, data.domain) || !Array.isArray(data.tags) || data.tags.some(tag => typeof tag !== 'string')) throw new Error(`Invalid title, domain or tags in ${name}`);
     if (data.related !== undefined && (!Array.isArray(data.related) || data.related.some(slug => typeof slug !== 'string'))) throw new Error(`Invalid related list in ${name}`);
-    const slug = name.slice(0, -3);
+    const slug = path.basename(name, '.md');
     if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`Invalid note filename: ${name}`);
     const ids = new Map();
     const markdown = new Marked({gfm: true, renderer: {

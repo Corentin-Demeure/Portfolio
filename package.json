@@ -5,9 +5,14 @@
   "scripts": {
     "build": "node build.mjs",
     "test": "node --test tests/build.test.mjs",
-    "preview": "node preview.mjs"
+    "preview": "node preview.mjs",
+    "sync:obsidian": "node sync-obsidian.mjs",
+    "watch:obsidian": "node sync-obsidian.mjs --watch",
+    "build:obsidian": "node sync-obsidian.mjs && node build.mjs"
   },
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "gray-matter": "4.0.3",
     "marked": "17.0.5"
