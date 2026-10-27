@@ -570,7 +570,8 @@ body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-curre
   max-width: calc(100% - 32px);
   min-height: 297mm;
   margin: 32px auto;
-  background: rgba(164, 207, 247, .80); /* 20% transparent; blue tint increased by 20%. */
+  background: rgba(40, 78, 115, .80); /* 20% transparent; darker blue for white text. */
+  color: #fff;
   border: 1px solid #d7eaff80;
   box-shadow: 0 16px 64px #0006;
 }
@@ -606,7 +607,7 @@ body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-curre
   background: #edf6ffcc;
 }
 body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) :is(.eyebrow, .note-tags a, .inline-tag, .connections p) {
-  color: #36516a;
+  color: #fff;
 }
 @media (max-width: 1280px) {
   body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .sidebar {
@@ -630,4 +631,22 @@ body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-curre
     max-width: calc(100% - 20px);
     min-height: calc(100vh - 150px);
   }
+}
+/* White reading text against the darker translucent blue sheet. */
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) :is(main, #search-results) {
+  color: #fff;
+  text-shadow: 0 1px 2px #06182780;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) main :is(a, .eyebrow, .connections p) {
+  color: #fff;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .thumbnail-tags.note-tags a {
+  color: #fff;
+  background: #183e63;
+  border-color: #8eabc7;
+  text-shadow: none;
+}
+body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-current="page"]) .duration {
+  color: #fff;
+  background: #142c42;
 }
