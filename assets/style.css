@@ -687,3 +687,27 @@ body:has(.feed-tabs a[data-domain="Agronomie"][aria-current="page"]) {
   background-image: url("./photos/urbanana%20building%20slice.jpg");
   background-size: 100% 100%;
 }
+
+/* Compact, bevelled notice inspired by early web forums. */
+.draft-notice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 28px 0;
+  padding: 10px 14px;
+  border: 3px ridge #d9d6c7;
+  border-radius: 0;
+  background: #fff7d6;
+  color: #292b30;
+  box-shadow: 1px 1px 0 #182c4066;
+  font: 12px/1.5 Verdana, Arial, sans-serif;
+  text-shadow: none;
+}
+.draft-notice-icon {
+  flex-shrink: 0;
+  color: #7d5200;
+  font: bold 25px/1 monospace;
+}
+.draft-notice-title { display: block; font-size: 14px; color: #292b30; }
+.draft-notice p { margin: 2px 0 0; color: #292b30; }
+@media (max-width: 650px) { .draft-notice { margin: 12px 16px 0; padding: 8px 10px; gap: 10px; } }
