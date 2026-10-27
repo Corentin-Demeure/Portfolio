@@ -81,3 +81,16 @@ test('aerospace cards link to the nested article and show the ISS class photo', 
  const css = fs.readFileSync(path.join(output,'assets/style.css'),'utf8');
  assert.ok(!css.includes('body:has('));
 });
+
+test('every page includes the thin attribution footer and contact links', () => {
+ build();
+ const walk = dir => fs.readdirSync(dir,{withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(path.join(dir,e.name)) : [path.join(dir,e.name)]);
+ for (const file of walk(output).filter(file => file.endsWith('.html'))) {
+  const html = fs.readFileSync(file,'utf8');
+  assert.equal((html.match(/class="site-footer"/g) || []).length, 1);
+  assert.match(html, /creativecommons.org\/licenses\/by-nc\/4.0/);
+  assert.match(html, /https:\/\/www.linkedin.com\/in\/demeure-corentin/);
+  assert.match(html, /mailto:etu51424@henallux.be/);
+  assert.match(html, /assets\/logos\/henallux.svg/);
+ }
+});
