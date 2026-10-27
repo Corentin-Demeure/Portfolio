@@ -704,9 +704,11 @@ body:has(.feed-tabs a[data-domain="Agronomie"][aria-current="page"]) {
   text-shadow: none;
 }
 .draft-notice-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
   flex-shrink: 0;
-  color: #7d5200;
-  font: bold 25px/1 monospace;
 }
 .draft-notice-title { display: block; font-size: 14px; color: #292b30; }
 .draft-notice p { margin: 2px 0 0; color: #292b30; }
