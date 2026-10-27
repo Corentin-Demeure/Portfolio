@@ -10,7 +10,7 @@ test('Markdown notes produce working pages, navigation, images and search', () =
   assert.equal(notes.length, 6);
   const walk = dir => fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry => entry.isDirectory() ? walk(path.join(dir,entry.name)) : [path.join(dir,entry.name)]);
   const pages = walk(output).filter(file => file.endsWith('.html'));
-  assert.equal(pages.length, 7);
+  assert.equal(pages.length, 8);
   for (const file of pages) {
     const html = fs.readFileSync(file,'utf8');
     assert.ok(!html.includes('{{'), file+' contains unresolved placeholders');
@@ -20,17 +20,17 @@ test('Markdown notes produce working pages, navigation, images and search', () =
       assert.ok(fs.existsSync(path.resolve(path.dirname(file), relative)), `${file}: missing ${value}`);
     }
   }
-  const aerospace = fs.readFileSync(path.join(output,'Aerospace/index.html'),'utf8');
-  assert.match(aerospace, /<img src="..\/images\/iss-my-class.png"/);
+  const aerospace = fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8');
+  assert.match(aerospace, /<img src="..\/..\/images\/iss-my-class.png"/);
   assert.match(aerospace, /Passion pour le spatial/);
-  assert.match(aerospace, /href="..\/Aerospace\/"/);
+  assert.match(aerospace, /href="..\/..\/Aerospace\/"/);
   assert.ok(!fs.existsSync(path.join(output,'notes/satellites/index.html')));
   assert.ok(!fs.existsSync(path.join(output,'notes/parcours-aerospatial/index.html')));
   for (const file of pages) {
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(!html.includes('Penser les satellites à l’échelle'));
     assert.ok(!html.includes('<summary>Aerospace</summary>'));
-    if (file !== path.join(output, 'index.html')) assert.ok(!html.includes('class="media-card"'));
+    if (![path.join(output, 'index.html'), path.join(output, 'Aerospace/index.html')].includes(file)) assert.ok(!html.includes('class="media-card"'));
   }
   const sandbox = {window:{}};
   vm.runInNewContext(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'),sandbox);
@@ -44,9 +44,9 @@ test('editing only Markdown updates the rendered note and search catalogue', () 
   try {
     fs.writeFileSync(source,original+'\n## Modification de vérification\n\nMarkdown-autoupdate-9274.\n\n[Autre note](biomedical.md)\n');
     build();
-    assert.match(fs.readFileSync(path.join(output,'Aerospace/index.html'),'utf8'), /id="modification-de-vérification"/);
+    assert.match(fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8'), /id="modification-de-vérification"/);
     assert.match(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'), /Markdown-autoupdate-9274/);
-    assert.match(fs.readFileSync(path.join(output,'Aerospace/index.html'),'utf8'), /href="..\/Biomedical\/"/);
+    assert.match(fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8'), /href="..\/..\/Biomedical\/"/);
     fs.writeFileSync(source,original.replace('domain: "Aerospace"','domain: "Unknown"'));
     assert.throws(build,/Invalid title, domain or tags/);
   } finally {
@@ -67,4 +67,17 @@ test('editing only Markdown updates the rendered note and search catalogue', () 
   assert.match(fs.readFileSync(page, 'utf8'), /Ma première phrase biomédicale/);
   assert.match(fs.readFileSync(path.join(output, 'assets/notes.js'), 'utf8'), /Ma première phrase biomédicale/);
  } finally { fs.writeFileSync(source, original); build(); }
+});
+
+test('aerospace cards link to the nested article and show the ISS class photo', () => {
+ build();
+ for (const page of ['index.html', 'Aerospace/index.html']) {
+  const html = fs.readFileSync(path.join(output,page),'utf8');
+  assert.match(html, /class="media-card"/);
+  assert.match(html, /Aerospace\/Mon-parcours\//);
+  assert.match(html, /images\/iss-my-class.png/);
+  assert.match(html, /data-domain="Aerospace"[^>]*>Aérospatial<\/a>/);
+ }
+ const css = fs.readFileSync(path.join(output,'assets/style.css'),'utf8');
+ assert.ok(!css.includes('body:has('));
 });

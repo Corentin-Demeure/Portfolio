@@ -87,3 +87,11 @@ Seul le parcours aérospatial contient actuellement du texte, avec sa miniature 
 - Biologie spéculative : `notes/biologie-speculative.md`
 - Urbanisme : `notes/louvain-la-neuve.md`
 - Travail manuel : `notes/travail-manuel.md`
+
+## Articles aérospatiaux
+
+L’onglet « Aérospatial » conserve l’adresse /Portfolio/Aerospace/. Il présente les miniatures des articles. Le parcours complet est à /Portfolio/Aerospace/Mon-parcours/.
+
+Pour ajouter un article, créer notes/mon-article.md avec title, domain: Aerospace, tags, related et thumbnail: images/ma-photo.jpg. Écrire le texte sous les métadonnées et ajouter l’image dans images/. Après le push, la miniature apparaît automatiquement dans Tout et Aérospatial ; l’article est publié à /Portfolio/Aerospace/mon-article/.
+
+Tous les onglets et articles utilisent le même fond ISS, la même feuille bleue et le texte blanc.

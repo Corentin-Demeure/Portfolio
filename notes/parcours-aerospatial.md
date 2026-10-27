@@ -4,6 +4,8 @@ domain: "Aerospace"
 tags: ["aerospace","parcours","aerospacelab","motivation-letter"]
 eyebrow: "Aerospace / Essai"
 related: []
+thumbnail: "images/iss-my-class.png"
+thumbnailAlt: "Notre photo de classe dans la Station spatiale internationale"
 ---
 
 # > Passion pour le spatial

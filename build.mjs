@@ -6,8 +6,8 @@ import { Marked } from 'marked';
 import { generateDomainPages } from './generate-domain-pages.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const pageRoutes = {'parcours-aerospatial':'Aerospace', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
-const noteUrl = slug => pageRoutes[slug] ? pageRoutes[slug]+'/' : `notes/${slug}/index.html`;
+const pageRoutes = {'parcours-aerospatial':'Aerospace/Mon-parcours', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
+const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : domain === 'Aerospace' ? `Aerospace/${slug}/` : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
   Aerospace: 'Aerospace', 'Biomédical': 'Biomedical', Agronomie: 'Agronomie',
@@ -39,7 +39,7 @@ export function build() {
       },
     }});
     const html = markdown.parse(content);
-    return {...data, slug, html, text: data.title+' '+data.domain+' '+plain(html), url: noteUrl(slug)};
+    return {...data, slug, html, text: data.title+' '+data.domain+' '+plain(html), url: noteUrl(slug, data.domain)};
   });
   if (!notes.length) throw new Error('No Markdown notes found.');
   const layout = fs.readFileSync(path.join(root, 'templates/note.html'), 'utf8');
@@ -48,6 +48,13 @@ export function build() {
   fs.rmSync(output, {recursive:true, force:true});
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', '.nojekyll']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
+  const cards = notes.filter(note => note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
+    const image = note.thumbnail || 'images/iss-my-class.png';
+    if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
+    return '<article class="media-card" data-domain="'+escape(note.domain)+'"><div class="thumbnail"><a class="thumbnail-link" href="./'+note.url+'" aria-label="'+escape(note.title)+'"><img src="./'+escape(image)+'" alt="'+escape(note.thumbnailAlt || note.title)+'" loading="lazy"></a></div><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2></div></article>';
+  }).join('\n');
+  const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8').replace('<!-- NOTE_CARDS -->', cards);
+  fs.writeFileSync(path.join(output, 'index.html'), home);
   generateDomainPages(output);
   for (const note of notes) {
     const tags = note.tags.map(tag => `<a href="../../index.html?q=${encodeURIComponent('tag:#'+tag.toLowerCase())}">#${escape(tag)}</a>`).join('');
@@ -65,7 +72,7 @@ export function build() {
     let html = layout.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key]);
     html = html.replace(/<a\b[^>]*data-domain="([^"]*)"[^>]*>/g, (link, domain) => domain === escape(note.domain) ? link.replace('>', ' aria-current="page">') : link);
     html = html.replace(new RegExp(`(<a )(href="../../notes/${note.slug}/index.html")`), '$1class="selected" $2');
-    if (note.url.endsWith('/')) {
+    if (note.url.endsWith('/') && note.url.split('/').filter(Boolean).length === 1) {
       html = html.replace(/<a class="back"[^>]*>[^<]*<\/a>/, '')
         .replaceAll('../../', '../');
     }

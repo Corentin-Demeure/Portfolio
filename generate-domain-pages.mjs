@@ -17,7 +17,7 @@ const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
 export function generateDomainPages(root = sourceRoot) {
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const [domain, slug] of domains) {
-  let html = home.replace('<title>Notes</title>', `<title>${escape(domain)} — Notes</title>`)
+  let html = home.replace('<title>Notes</title>', `<title>${escape(domain === "Aerospace" ? "Aérospatial" : domain)} — Notes</title>`)
     .replace('<main class="feed"', `<main data-domain="${escape(domain)}" class="feed"`)
     .replace(/<article class="media-card" data-domain="([^"]+)">[\s\S]*?<\/article>/g,
       (card, name) => name === escape(domain) ? card : '')
