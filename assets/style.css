@@ -570,7 +570,7 @@ body:has(.feed-tabs a:is([data-domain=""], [data-domain="Aerospace"])[aria-curre
   max-width: calc(100% - 32px);
   min-height: 297mm;
   margin: 32px auto;
-  background: rgba(205, 225, 245, .75); /* 25% transparent; text remains opaque. */
+  background: rgba(164, 207, 247, .80); /* 20% transparent; blue tint increased by 20%. */
   border: 1px solid #d7eaff80;
   box-shadow: 0 16px 64px #0006;
 }
