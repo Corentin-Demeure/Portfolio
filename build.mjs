@@ -47,7 +47,7 @@ export function build() {
   if (path.dirname(output) !== root || path.basename(output) !== 'dist') throw new Error('Invalid output path');
   fs.rmSync(output, {recursive:true, force:true});
   fs.mkdirSync(output);
-  for (const entry of ['index.html', 'assets', 'images', '.nojekyll']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
+  for (const entry of ['index.html', 'assets', 'images', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
   const cards = notes.filter(note => note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
