@@ -63,10 +63,13 @@ export function build() {
       if (!target) throw new Error(`Unknown related note ${slug} in ${note.slug}`);
       return `<a class="related" href="../../${target.url}">${escape(target.title)} ↗</a>`;
     }).join('\n') || '<p>Pas encore de lien entrant.</p>';
+    const domainUrl = '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html');
+    const category = (note.eyebrow || '').includes('/') ? (note.eyebrow || '').slice((note.eyebrow || '').indexOf('/') + 1).trim() : '';
+    const breadcrumb = '<nav class="eyebrow breadcrumb" aria-label="Fil d’Ariane"><a href="'+domainUrl+'">'+escape(note.domain)+'</a>'+(category ? ' / '+escape(category) : '')+'</nav>';
     const values = {
       title: escape(note.title), description: escape(plain(note.html).slice(0, 160)),
       domainUrl: '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html'),
-      article: note.html.trim() ? `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n<p class="eyebrow">${escape(note.eyebrow || note.domain)}</p>\n<h1>${escape(note.title)}</h1>\n${note.html}` : '',
+      article: note.html.trim() ? `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n${breadcrumb}\n<h1>${escape(note.title)}</h1>\n${note.html}` : '',
       related,
     };
     let html = layout.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key]);

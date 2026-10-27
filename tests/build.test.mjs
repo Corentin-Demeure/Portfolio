@@ -107,3 +107,15 @@ test('domain backgrounds publish without private medical content', () => {
  assert.ok(css.includes('background-size: 100% 100%'));
  for (const photo of ['Midjourney-unveils-full-body-ultrasonic-scanner-aimed-at-transforming-medical-imaging.jpg','urbanana building slice.jpg']) assert.ok(fs.existsSync(path.join(output,'assets/photos',photo)));
 });
+
+test('article breadcrumbs replace the redundant return link', () => {
+ build();
+ const html=fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8');
+ assert.ok(!html.includes('Retour au fil'));
+ assert.match(html, /aria-label="Fil d’Ariane"><a href="..\/..\/Aerospace\/">Aerospace<\/a> \/ Essai<\/nav>/);
+ for(const file of ['index.html','Aerospace/index.html','Biomedical/index.html']) {
+  const page=fs.readFileSync(path.join(output,file),'utf8');
+  assert.ok(!page.includes('Retour au fil'));
+  assert.match(page, /width="28" height="28" alt="" aria-hidden="true"/);
+ }
+});
