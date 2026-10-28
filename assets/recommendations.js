@@ -5,8 +5,8 @@
   const base = new URL('../', script.src);
   const current = window.PortfolioNotes.find(note => new URL(note.url, base).pathname === location.pathname);
   const domain = current?.domain || document.querySelector('main.feed')?.dataset.domain;
-  const score = note => (note.domain === domain ? 10 : 0) + (current ? note.tags.filter(tag => current.tags.includes(tag)).length : 0);
-  const chosen = window.PortfolioNotes.filter(note => note !== current).sort((a,b) => score(b)-score(a)).slice(0,4);
+  const sharedTags = note => current ? note.tags.filter(tag => current.tags.includes(tag)).length : 0;
+  const chosen = window.PortfolioNotes.filter(note => note !== current).sort((a,b) => Number(b.domain === domain) - Number(a.domain === domain) || sharedTags(b) - sharedTags(a));
   for (const note of chosen) {
     const link = document.createElement('a');
     link.className = 'recommendation';
