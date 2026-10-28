@@ -1,0 +1,22 @@
+(function () {
+  const panel = document.querySelector('.recommendations');
+  const script = Array.from(document.scripts).find(item => /\/assets\/recommendations\.js(?:\?|$)/.test(item.src));
+  if (!panel || !script || !Array.isArray(window.PortfolioNotes)) return;
+  const base = new URL('../', script.src);
+  const current = window.PortfolioNotes.find(note => new URL(note.url, base).pathname === location.pathname);
+  const domain = current?.domain || document.querySelector('main.feed')?.dataset.domain;
+  const score = note => (note.domain === domain ? 10 : 0) + (current ? note.tags.filter(tag => current.tags.includes(tag)).length : 0);
+  const chosen = window.PortfolioNotes.filter(note => note !== current).sort((a,b) => score(b)-score(a)).slice(0,4);
+  for (const note of chosen) {
+    const link = document.createElement('a');
+    link.className = 'recommendation';
+    link.href = new URL(note.url, base).href;
+    const title = document.createElement('span');
+    title.textContent = note.title;
+    const label = document.createElement('small');
+    label.textContent = note.domain === 'Aerospace' ? 'Aérospatial' : note.domain;
+    link.append(title,label);
+    panel.querySelector('.recommendation-list').append(link);
+  }
+  panel.hidden = !chosen.length;
+})();
