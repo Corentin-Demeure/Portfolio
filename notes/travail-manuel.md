@@ -1,6 +1,6 @@
 ---
-title: "Travail manuel"
-domain: "Travail manuel"
+title: "Projets techniques"
+domain: "Projets techniques"
 tags: []
 related: []
 ---

@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.dirname(fileURLToPath(import.meta.url));
 const source=process.env.OBSIDIAN_PORTFOLIO || 'C:/Liberté/Ecole/Carnet diaristique et Notes/Projects/Portfolio';
 const vault=path.resolve(source,'../..');
-const domains={aerospace:'Aerospace',biomedical:'Biomédical',agronomie:'Agronomie','biologie-speculative':'Biologie spéculative','travail-manuel':'Travail manuel',urbanisme:'Urbanisme & durabilité'};
+const domains={aerospace:'Aerospace',biomedical:'Biomédical',agronomie:'Agronomie','biologie-speculative':'Biologie spéculative','travail-manuel':'Projets techniques',urbanisme:'Urbanisme & durabilité'};
 const slug=s=>s.normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name.startsWith('.')?[]:e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');

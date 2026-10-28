@@ -43,7 +43,7 @@ Le titre principal est généré depuis `title`. Les images restent dans `images
 
 ## Ajouter une note
 
-Créer `notes/mon-sujet.md` avec les métadonnées ci-dessus. Les domaines disponibles sont `Aerospace`, `Biomédical`, `Agronomie`, `Biologie spéculative`, `Travail manuel`, `Urbanisme & durabilité` et `Transversal`. La note est automatiquement publiée et ajoutée à la recherche. Pour l’ajouter aux cartes d’accueil et au menu, modifier aussi `index.html` et `templates/note.html`.
+Créer `notes/mon-sujet.md` avec les métadonnées ci-dessus. Les domaines disponibles sont `Aerospace`, `Biomédical`, `Agronomie`, `Biologie spéculative`, `Projets techniques`, `Urbanisme & durabilité` et `Transversal`. La note est automatiquement publiée et ajoutée à la recherche. Pour l’ajouter aux cartes d’accueil et au menu, modifier aussi `index.html` et `templates/note.html`.
 
 ## Prévisualiser avant de pousser (facultatif)
 
@@ -86,7 +86,7 @@ Seul le parcours aérospatial contient actuellement du texte, avec sa miniature 
 - Agronomie : `notes/migration-craw.md`
 - Biologie spéculative : `notes/biologie-speculative.md`
 - Urbanisme : `notes/louvain-la-neuve.md`
-- Travail manuel : `notes/travail-manuel.md`
+- Projets techniques : `notes/travail-manuel.md`
 
 ## Articles aérospatiaux
 

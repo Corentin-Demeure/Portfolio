@@ -12,7 +12,7 @@ const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : doma
 export const output = path.join(root, 'dist');
 const domains = {
   Aerospace: 'Aerospace', 'Biomédical': 'Biomedical', Agronomie: 'Agronomie',
-  'Biologie spéculative': 'Biologie-speculative', 'Travail manuel': 'Travail-manuel',
+  'Biologie spéculative': 'Biologie-speculative', 'Projets techniques': 'Travail-manuel',
   'Urbanisme & durabilité': 'Urbanisme', Transversal: '',
 };
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');

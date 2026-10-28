@@ -21,7 +21,7 @@ test('Markdown notes produce working pages, navigation, images and search', () =
     }
   }
   const aerospace = fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8');
-  assert.match(aerospace, /<img src="..\/..\/images\/iss-my-class.png"/);
+  assert.match(aerospace, /<img src="..\/..\/images\/(?:iss-my-class\.png|obsidian\/[a-f0-9]+\.png)"/);
   assert.match(aerospace, /Passion pour le spatial/);
   assert.match(aerospace, /href="..\/..\/Aerospace\/"/);
   assert.ok(!fs.existsSync(path.join(output,'notes/satellites/index.html')));

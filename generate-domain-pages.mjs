@@ -8,7 +8,7 @@ const domains = [
   ['Biomédical', 'Biomedical'],
   ['Agronomie', 'Agronomie'],
   ['Biologie spéculative', 'Biologie-speculative'],
-  ['Travail manuel', 'Travail-manuel'],
+  ['Projets techniques', 'Travail-manuel'],
   ['Urbanisme & durabilité', 'Urbanisme'],
 ];
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;');

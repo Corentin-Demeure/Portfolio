@@ -13,7 +13,7 @@ Quand j'étais petit j'ai lu des livres sur énormément de sujets, j'ai mémori
 J'ai passé une grande partie de mon enfance à créer des villes en jouet ou dans des rêves lucides et j'étais passioné par la connaissance.
 En 2015, pour notre venue à l'Eurospace Center, notre professeur Christophe Modave, Ami de Frank De Winne, a réussi à faire parvenir notre photo de l'Eurospace Center jusque dans l'ISS. La photo a été prise en 2015 par la Spationaute Italienne Amanda Cristoforetti.
 Nous sommes allés deux années de suit à l'Eurospace Center, l'année d'après nous avons même dormi sur place.
-![Notre photo de classe dans la Station spatiale internationale.](../../images/iss-my-class.png)
+![iss my class by samantha cristofretti.png](../../images/obsidian/f9e2ad03f418185ddb59.png)
 Mr Christophe Modave est également parvenu à nous faire visiter le Centre d'Entraînement des Astronautes Européens dans la base miltaire allouée à l'ESA à Cologne où nous avions vu la piscine où s'entrainait les astronautes. Nous avons fait décoller des fusées au bicarbonate de soude. Mon ami a toujours la fusée chez lui d'ailleurs.
 Nous avons eu le privilège d'avoir comme guide de visite nulle autre que Frank DeWinne lui-même. Frank DeWinne est passé à l'école 1 année où j'étais là, et nous sommes passés dans le programme _Les Niouzz_ de la RBTF en 2016 pour notre interview de Frank DeWinne et les expériences réalisées en class à l'occasion.
 
@@ -35,8 +35,8 @@ J'ai revamp la page sur la "Starbase", surtout la gestion des risques environnem
 ## > Création de SpaceX Starshield sur Wikipedia et rédaction de Starlink in the Russo-Ukrainian War 
 Je pense que cette section sera intéressante pour Aerospacelab parce que ce domaine de connaissance rejoint votre contrat IRIS² de Septembre 2026.
 
-De 2023 à 2024, j'ai revamp le petit article Wikipédia "[Starlink services in Ukraine](https://en.wikipedia.org/w/index.php?title=Starlink_in_the_Russo-Ukrainian_war&oldid=1146950032)" (2022-2023) en l'article massif "Starlink in the Russo-Ukrainian War" (2023-2026) que je vous invite à consulter ici : https://en.wikipedia.org/wiki/Starlink_in_the_Russo-Ukrainian_war.
-Cette article est le plus compliqué que j'ai construit. C'est un travail organique de 150 sources. Après l'introduction qui résume, il pose l'existence Starlink avant l'invasion en Ukraine puis explore la situation sont tous les angles et point de vues ; 
+De 2023 à 2024, j'ai revamp le petit article Wikipédia "[Starlink services in Ukraine](https://en.wikipedia.org/w/index.php?title=Starlink_in_the_Russo-Ukrainian_war&oldid=1146950032)" (2022-2023) en l'article massif "[Starlink in the Russo-Ukrainian War](https://en.wikipedia.org/wiki/Starlink_in_the_Russo-Ukrainian_war)" (2023-2026) que je vous invite à zyeuter au lien que j'ai intégré à l'html.
+Cet article est le plus compliqué que j'ai construit. C'est un travail organique de 150 sources. Après l'introduction qui résume, il pose l'existence Starlink avant l'invasion en Ukraine puis explore la situation sont tous les angles et point de vues ; 
 * les usages civils, 
 * les usages militaires par l'Ukraine, 
 * l'implication du Pentagone et Départment de la Défense américaine dans la situation, 
@@ -57,7 +57,7 @@ J'ai également choisit toutes les images. J'ai même créé la carte du coverag
 Starlink durant la Guerre Russo-Ukrainienne est pertinent à comprendre pour IRIS2 car il se situe à l'intersection de la première guerre impliquant un actur spatial - tout en faisant intervenir du combat de drone, de la communication drone-satellite, USV-satellite, de la cyberguerre, la logistique, la gestion en temps de crise, la naissance d'un système anti-satellite russe et d'autres concepts multidisciplinaires.
 Je pense que comprendre Starlink durant la guerre russo-ukrainienne, c'est comprendre les guerres des années 2030.
 
-Sur la même période en 2023, j'ai créé l'article SpaceX Starshield (https://en.wikipedia.org/wiki/SpaceX_Starshield) quand il n'était qu'un projet discret de SpaceX, avant même que le sujet soit connu de 99% du public américain.
+Sur la même période en 2023, j'ai créé l'article [SpaceX Starshield](https://en.wikipedia.org/wiki/SpaceX_Starshield) quand il n'était qu'un projet discret de SpaceX, avant même que le sujet soit connu de 99% du public américain.
 L'article me paraissait nécessaire : Starhsield commençait un petit peu à faire parler de lui or l'information à son égard n'était pas centralisée quelque part sur Internet. La croissance en importance du projet Starshield de SpaceX semblait inévitable et les premiers satellites Starshield avaient été lancés.
 En Europe son équivalent c'est IRIS2, pour lequel Aerospacelab a un contrat.
 Cet article est toujours souvent référencé sur Twitter, Reddit ainsi que par Gemini, souvent par des Européens, Américains, Ukrainiens et Russes.
@@ -83,4 +83,4 @@ J'ai été finalement découragé du projet quand j'ai vu qu'une startup aux Ét
 On pourrait me reprocher de mentionner dans ma lettre de motivation un projet qui n'a pas quitté mon propre bureau d'études, mais c'est très courant en Europe et à la NASA même avec des financements, alors pour moi qui suit sans ressources, avec 2 mois à tuer et avec des études à côté, c'est excusable.
 Mais j'adorerais pouvoir repenser le projet pour Aerospacelab et modéliser toutes les ramifications de la chaine de production. En fait en m'intéressant à Aerospacelab je vais inévitablement modéliser progressivement la logistique de l'entreprise de mon côté car c'est dans ma nature.
 # > Annexe
-Lettre de motivation Aerospacelab
+[[Lettre de motivation Aerospacelab]] 
