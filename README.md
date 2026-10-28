@@ -151,3 +151,7 @@ Actualise les copies toutes les cinq secondes tant que le terminal reste ouvert.
 Une copie modifiée manuellement dans le dépôt bloque son écrasement à l’import. Le fichier `.obsidian-import.json` mémorise les empreintes des copies, sans chemin privé. Si une note source est supprimée ou renommée, l’ancienne copie est conservée et reste publiée tant qu’elle n’est pas retirée explicitement du dépôt.
 
 Pour publier, committer les notes importées, les images et `.obsidian-import.json`, puis pousser sur GitHub. Le build GitHub utilise les copies déjà importées ; il n’accède pas au coffre Obsidian local. L’import et la surveillance ne déclenchent aucune publication.
+
+## Articles épinglés
+
+Modifier `featured.json` pour choisir et ordonner les articles du carrousel, indépendamment de la grille automatique. La clé `Tout` configure l’accueil ; les autres clés sont les domaines, par exemple `Aerospace`. Chaque liste contient les slugs des notes (noms sans `.md`). Une liste vide masque le carrousel. Le titre et la miniature sont repris depuis la note ; le parcours reste hors de la grille. Les autres articles peuvent apparaître dans la sélection et dans le fil. Navigation manuelle par flèches, vignettes ou touches directionnelles, sans défilement automatique. Reconstruire avec `npm run build`.

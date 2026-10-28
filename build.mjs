@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { generateDomainPages } from './generate-domain-pages.mjs';
+import { featuredSelection } from './featured.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const pageRoutes = {'parcours-aerospatial':'Aerospace/Mon-parcours', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
@@ -51,14 +52,16 @@ export function build() {
   fs.rmSync(output, {recursive:true, force:true});
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
-  const cards = notes.filter(note => note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
+  const renderFeatured = featuredSelection(root, notes);
+  const cards = notes.filter(note => note.slug !== 'parcours-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
     return '<article class="media-card" data-domain="'+escape(note.domain)+'"><div class="thumbnail"><a class="thumbnail-link" href="./'+note.url+'" aria-label="'+escape(note.title)+'"><img src="./'+escape(image)+'" alt="'+escape(note.thumbnailAlt || note.title)+'" loading="lazy"></a></div><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2></div></article>';
   }).join('\n');
   const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8').replace('<!-- NOTE_CARDS -->', cards);
   fs.writeFileSync(path.join(output, 'index.html'), home);
-  generateDomainPages(output);
+  generateDomainPages(output, renderFeatured);
+  fs.writeFileSync(path.join(output, 'index.html'), home.replace('<!-- FEATURED_ARTICLES -->', renderFeatured('')));
   for (const note of notes) {
     const tags = note.tags.map(tag => `<a href="../../index.html?q=${encodeURIComponent('tag:#'+tag.toLowerCase())}">#${escape(tag)}</a>`).join('');
     const related = (note.related || []).map(slug => {

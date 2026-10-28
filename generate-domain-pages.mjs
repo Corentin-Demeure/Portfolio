@@ -14,15 +14,17 @@ const domains = [
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
 
 // Run after editing the home feed to refresh the six standalone domain pages.
-export function generateDomainPages(root = sourceRoot) {
+export function generateDomainPages(root = sourceRoot, renderFeatured = () => '') {
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const [domain, slug] of domains) {
   let html = home.replace('<title>Portfolio</title>', `<title>${escape(domain === "Aerospace" ? "Aérospatial" : domain)}</title>`)
+    .replace('<!-- FEATURED_ARTICLES -->', renderFeatured(domain))
     .replace('<main class="feed"', `<main data-domain="${escape(domain)}" class="feed"`)
     .replace(/<article class="media-card" data-domain="([^"]+)">[\s\S]*?<\/article>/g,
       (card, name) => name === escape(domain) ? card : '')
     .replace(/<section\b[^>]*data-domain-intro="([^"]+)"[\s\S]*?<\/section>/g,
       (section, name) => name === escape(domain) ? section.replace(/ hidden=""/g, '') : '')
+    .replace(/<section\b[^>]*data-featured-domain="([^"]+)"[\s\S]*?<\/section>/g, (section, name) => name === escape(domain) ? section : '')
     .replace(/<a\b[^>]*data-domain="([^"]*)"[^>]*>/g, (link, name) => {
       link = link.replace(/ aria-current="page"/g, '');
       return name === escape(domain) ? link.replace('>', ' aria-current="page">') : link;
