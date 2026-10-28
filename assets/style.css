@@ -674,7 +674,7 @@ body .shell { display: flex; flex-direction: column; }
 .site-footer .cc-mark { display: inline-grid; place-items: center; width: 17px; height: 17px; border: 1px solid currentColor; border-radius: 50%; font-size: 10px; font-weight: 700; line-height: 1; }
 .site-footer .henallux-contact { gap: 10px; }
 .site-footer .henallux-contact img { display: block; width: 18px; height: 21px; object-fit: contain; }
-@media (max-width: 650px) { .site-footer { justify-content: center; padding: 5px 10px; } }
+@media (max-width: 650px) { .site-footer { justify-content: center; padding: 2px 10px; } }
 
 /* Domain backgrounds; all other pages retain the shared aurora theme. */
 body:has(.feed-tabs a[data-domain="Biomédical"][aria-current="page"]) {
@@ -693,26 +693,26 @@ body:has(.feed-tabs a[data-domain="Agronomie"][aria-current="page"]) {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 10px 28px 0;
-  padding: 5px 10px;
+  margin: 6px 28px 0;
+  padding: 2px 10px;
   border: 2px ridge #d9d6c7;
   border-radius: 0;
   background: #fff7d6;
   color: #292b30;
   box-shadow: 1px 1px 0 #182c4066;
-  font: 12px/1.5 Verdana, Arial, sans-serif;
+  font: 12px/1.25 Verdana, Arial, sans-serif;
   text-shadow: none;
 }
 .draft-notice-icon {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
   flex-shrink: 0;
 }
-.draft-notice-title { display: block; font-size: 14px; color: #292b30; }
+.draft-notice-title { display: block; font-size: 12px; color: #292b30; }
 .draft-notice p { margin: 0; color: #292b30; }
-@media (max-width: 650px) { .draft-notice { margin: 10px 16px 0; padding: 5px 8px; gap: 8px; } }
+@media (max-width: 650px) { .draft-notice { margin: 6px 16px 0; padding: 2px 8px; gap: 6px; } }
 
 /* Compact banner and article opening, shared by every current and future page. */
 .draft-notice > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; }
@@ -726,23 +726,24 @@ main.feed { padding-top: 18px; }
 
 
 /* Editorial selection, configured independently from the article feed. */
-.featured-carousel { margin:0 0 32px; overflow:hidden; border:1px solid #d7eaff70; background:#102a40; border-radius:8px; }
+.featured-carousel { margin:0 0 24px; overflow:hidden; border:1px solid #d7eaff70; background:#102a40; border-radius:8px; }
 .featured-stage { position:relative; }
-.featured-slide { position:relative; margin:0; }
+.featured-slide { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; align-items:center; margin:0; }
 .featured-slide[hidden], .featured-controls[hidden] { display:none; }
-.featured-picture { display:block; background:#102235; }
-.featured-picture img { display:block; width:100%; height:420px; object-fit:contain; }
-.featured-caption { padding:18px 22px; background:linear-gradient(110deg,#102334f5,#244b65eb); }
-.featured-caption h2 { margin:0 0 8px; font-size:clamp(22px,2.4vw,30px); line-height:1.25; }
+.featured-picture { display:block; background:transparent; aspect-ratio:16/9; min-width:0; }
+.featured-picture img { display:block; width:100%; height:100%; object-fit:contain; }
+.featured-caption { padding:16px 20px 16px 0; background:transparent; }
+.featured-caption h2 { margin:0 0 8px; font-size:clamp(20px,2vw,26px); line-height:1.25; }
 .featured-caption a { color:white; }
 .featured-caption h2 a { text-decoration:none; }
 .featured-read { font-size:14px; text-underline-offset:4px; }
-.featured-controls { display:flex; align-items:center; gap:12px; padding:10px 14px; background:#101e2de0; color:white; }
+.featured-controls { display:flex; align-items:center; gap:10px; padding:6px 10px; background:#101e2de0; color:white; }
 .featured-controls button { cursor:pointer; padding:7px; border:1px solid #a9c6d870; background:#304e63; color:white; font:inherit; border-radius:3px; }
 .featured-thumbs { display:flex; gap:8px; margin-left:auto; overflow-x:auto; padding:3px; }
 .featured-thumbs button { padding:2px; opacity:.65; flex-shrink:0; }
 .featured-thumbs button[aria-pressed="true"] { opacity:1; border-color:#8ee7f3; box-shadow:0 0 0 2px #8ee7f3; }
-.featured-thumbs img { display:block; width:74px; height:48px; object-fit:cover; }
+.featured-thumbs img { display:block; width:52px; height:34px; object-fit:cover; }
 .featured-carousel a:focus-visible,.featured-carousel button:focus-visible { outline:3px solid #ffe69b; outline-offset:3px; }
 .featured-count { white-space:nowrap; font-size:12px; }
-@media(max-width:650px) { .featured-picture img { height:260px; } .featured-caption { padding:14px; } .featured-controls { gap:6px; padding:8px; } .featured-thumbs img { width:48px; height:36px; } }
+@media(max-width:650px) { .featured-slide { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; } .featured-caption { padding:10px 10px 10px 0; } .featured-caption h2 { font-size:18px; } .featured-controls { gap:6px; padding:6px; } .featured-thumbs img { width:42px; height:28px; } }
+@media(max-width:420px) { .featured-slide { grid-template-columns:1fr; gap:0; } .featured-picture { width:70%; margin:10px auto 0; } .featured-caption { padding:10px 14px; } }
