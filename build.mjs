@@ -53,16 +53,16 @@ export function build() {
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
   const renderFeatured = featuredSelection(root, notes);
-  const cards = notes.filter(note => note.slug !== 'parcours-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
+  const renderCards = (domain = '') => notes.filter(note => ((!domain || domain === 'Aerospace') ? note.slug === 'comment-aerospacelab-et-iris-peuvent-s-adapter-aux-missiles-anti-satellites-asat-russes' : note.domain === domain) && note.slug !== 'parcours-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
-    const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 600);
+    const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 1600);
     return '<article class="media-card" data-domain="'+escape(note.domain)+'"><a class="article-preview" href="./'+note.url+'" aria-label="Lire : '+escape(note.title)+'"><span class="preview-domain">'+escape(note.domain === 'Aerospace' ? 'Aérospatial' : note.domain)+'</span><p>'+escape(excerpt)+'</p><span class="preview-read">Lire la suite →</span></a><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2></div></article>';
   }).join('\n');
-  const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8').replace('<!-- NOTE_CARDS -->', cards);
+  const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
   fs.writeFileSync(path.join(output, 'index.html'), home);
-  generateDomainPages(output, renderFeatured);
-  fs.writeFileSync(path.join(output, 'index.html'), home.replace('<!-- FEATURED_ARTICLES -->', renderFeatured('')));
+  generateDomainPages(output, renderFeatured, renderCards);
+  fs.writeFileSync(path.join(output, 'index.html'), home.replace('<!-- FEATURED_ARTICLES -->', renderFeatured('')).replace('<!-- NOTE_CARDS -->', renderCards('')));
   for (const note of notes) {
     const tags = note.tags.map(tag => `<a href="../../index.html?q=${encodeURIComponent('tag:#'+tag.toLowerCase())}">#${escape(tag)}</a>`).join('');
     const related = (note.related || []).map(slug => {
