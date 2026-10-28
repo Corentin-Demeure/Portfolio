@@ -57,7 +57,7 @@ export function build() {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
     const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 1600);
-    return '<article class="media-card" data-domain="'+escape(note.domain)+'"><a class="article-preview" href="./'+note.url+'" aria-label="Lire : '+escape(note.title)+'"><span class="preview-domain">'+escape(note.domain === 'Aerospace' ? 'Aérospatial' : note.domain)+'</span><p>'+escape(excerpt)+'</p><span class="preview-read">Lire la suite →</span></a><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2></div></article>';
+    return '<article class="media-card" data-domain="'+escape(note.domain)+'"><a class="article-preview" href="./'+note.url+'" aria-label="Lire : '+escape(note.title)+'"><span class="preview-domain">'+escape(note.domain === 'Aerospace' ? 'Aérospatial' : note.domain)+'</span><p>'+escape(excerpt)+'</p><span class="preview-read">Lire la suite →</span></a><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2><p class="article-byline">Corentin Demeure. Sources : voir références.</p></div></article>';
   }).join('\n');
   const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
   fs.writeFileSync(path.join(output, 'index.html'), home);
@@ -76,7 +76,7 @@ export function build() {
     const values = {
       title: escape(note.title), description: escape(plain(note.html).slice(0, 160)),
       domainUrl: '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html'),
-      article: note.html.trim() ? `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n${breadcrumb}\n<h1>${escape(note.title)}</h1>\n${note.html}` : '',
+      article: note.html.trim() ? `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n${breadcrumb}\n<h1>${escape(note.title)}</h1>\n<p class="article-byline">Corentin Demeure. Sources : voir références.</p>\n${note.html}` : '',
       related,
     };
     let html = layout.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key]);

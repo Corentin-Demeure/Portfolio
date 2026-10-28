@@ -796,3 +796,16 @@ main.feed { padding-top: 18px; }
 .media-card > .card-info { order:-1; padding:0; }
 .media-card > .card-info h2 { font-size:clamp(23px,2.2vw,30px); line-height:1.3; }
 @media(max-width:650px) { .article-preview { padding:18px; } .article-preview p { font-size:16px; } }
+/* Compact attribution directly below article titles. */
+.article-byline,
+.featured-caption .article-byline,
+.recommendation .article-byline {
+  display:block;
+  margin:3px 0 7px;
+  font:11px/1.35 Arial,sans-serif;
+  font-weight:400;
+  color:#d8e6f0;
+  letter-spacing:0;
+}
+.prose > h1:has(+ .article-byline),
+.featured-caption h2:has(+ .article-byline) { margin-bottom:3px; }
