@@ -804,8 +804,12 @@ main.feed { padding-top: 18px; }
   margin:3px 0 7px;
   font:11px/1.35 Arial,sans-serif;
   font-weight:400;
-  color:#d8e6f0;
+  color:#fff;
   letter-spacing:0;
 }
 .prose > h1:has(+ .article-byline),
 .featured-caption h2:has(+ .article-byline) { margin-bottom:3px; }
+/* Technical projects background, including its article pages. */
+body:has(.feed-tabs a[data-domain="Projets techniques"][aria-current="page"]) {
+  background-image:url("./photos/PlumbingSystemHSUS.avif");
+}
