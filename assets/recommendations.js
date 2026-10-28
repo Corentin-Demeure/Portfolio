@@ -22,7 +22,7 @@
     label.textContent = note.domain === 'Aerospace' ? 'Aérospatial' : note.domain;
     const byline = document.createElement('small');
     byline.className = 'article-byline';
-    byline.textContent = 'Corentin Demeure. Sources : voir références.';
+    byline.textContent = 'Corentin Demeure.';
     link.append(image,title,byline,label);
     panel.querySelector('.recommendation-list').append(link);
   }
