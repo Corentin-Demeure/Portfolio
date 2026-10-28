@@ -56,7 +56,8 @@ export function build() {
   const cards = notes.filter(note => note.slug !== 'parcours-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
-    return '<article class="media-card" data-domain="'+escape(note.domain)+'"><div class="thumbnail"><a class="thumbnail-link" href="./'+note.url+'" aria-label="'+escape(note.title)+'"><img src="./'+escape(image)+'" alt="'+escape(note.thumbnailAlt || note.title)+'" loading="lazy"></a></div><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2></div></article>';
+    const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 600);
+    return '<article class="media-card" data-domain="'+escape(note.domain)+'"><a class="article-preview" href="./'+note.url+'" aria-label="Lire : '+escape(note.title)+'"><span class="preview-domain">'+escape(note.domain === 'Aerospace' ? 'Aérospatial' : note.domain)+'</span><p>'+escape(excerpt)+'</p><span class="preview-read">Lire la suite →</span></a><div class="card-info"><h2><a href="./'+note.url+'">'+escape(note.title)+'</a></h2></div></article>';
   }).join('\n');
   const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8').replace('<!-- NOTE_CARDS -->', cards);
   fs.writeFileSync(path.join(output, 'index.html'), home);
@@ -89,7 +90,7 @@ export function build() {
     const dest = path.join(output, note.url, note.url.endsWith('/') ? 'index.html' : '');
     fs.mkdirSync(path.dirname(dest), {recursive:true}); fs.writeFileSync(dest, html);
   }
-  const catalogue = notes.filter(note => note.html.trim()).map(({title,domain,tags,text,url}) => ({title,domain,tags,text,url}));
+  const catalogue = notes.filter(note => note.html.trim()).map(({title,domain,tags,text,url,thumbnail,thumbnailAlt}) => ({title,domain,tags,text,url,thumbnail: thumbnail || 'images/iss-my-class.png',thumbnailAlt: thumbnailAlt || title}));
   fs.writeFileSync(path.join(output, 'assets/notes.js'), '// Generated from notes/*.md.\nwindow.PortfolioNotes = '+JSON.stringify(catalogue,null,2)+';\n');
   console.log(`Built ${notes.length} Markdown notes into dist/.`);
   return notes;

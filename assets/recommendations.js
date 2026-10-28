@@ -11,11 +11,16 @@
     const link = document.createElement('a');
     link.className = 'recommendation';
     link.href = new URL(note.url, base).href;
+    const image = document.createElement('img');
+    image.src = new URL(note.thumbnail || 'images/iss-my-class.png', base).href;
+    image.alt = '';
+    image.loading = 'lazy';
+    image.width = 320; image.height = 180;
     const title = document.createElement('span');
     title.textContent = note.title;
     const label = document.createElement('small');
     label.textContent = note.domain === 'Aerospace' ? 'Aérospatial' : note.domain;
-    link.append(title,label);
+    link.append(image,title,label);
     panel.querySelector('.recommendation-list').append(link);
   }
   panel.hidden = !chosen.length;

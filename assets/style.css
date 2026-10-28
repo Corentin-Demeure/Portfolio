@@ -777,3 +777,14 @@ main.feed { padding-top: 18px; }
   .recommendations { max-width:calc(100% - 20px); padding:14px; }
   .recommendation-list { grid-template-columns:1fr; }
 }
+/* Text excerpts in the feed; image thumbnails in recommendations. */
+.article-preview { display:flex; flex-direction:column; gap:12px; height:240px; padding:20px; overflow:hidden; border:1px solid #c9e3f466; border-radius:8px; background:#e5f0f511; color:#fff; text-decoration:none; }
+.article-preview .preview-domain { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#d0e4f5; }
+.article-preview p { margin:0; overflow:hidden; display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; font:15px/1.6 Georgia,serif; color:inherit; }
+.preview-read { margin-top:auto; font-size:12px; text-decoration:underline; text-underline-offset:3px; }
+.article-preview:hover { background:#e5f0f522; border-color:#c9e3f4aa; }
+.article-preview:focus-visible { outline:3px solid #ffe69b; outline-offset:3px; }
+.recommendation img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; border-radius:5px; margin-bottom:9px; }
+.recommendation { padding:12px 0; }
+.recommendation span { font-size:13px; line-height:1.4; }
+@media(max-width:650px) { .article-preview { height:220px; padding:16px; } }
