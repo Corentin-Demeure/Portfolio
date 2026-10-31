@@ -63,7 +63,7 @@ export function build() {
   const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
   fs.writeFileSync(path.join(output, 'index.html'), home);
   generateDomainPages(output, renderFeatured, renderCards);
-  fs.writeFileSync(path.join(output, 'index.html'), home.replace('<!-- FEATURED_ARTICLES -->', renderFeatured('')).replace('<!-- NOTE_CARDS -->', renderCards('')));
+  fs.writeFileSync(path.join(output, 'index.html'), home.replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '').replace('<!-- FEATURED_ARTICLES -->', renderFeatured('')).replace('<!-- NOTE_CARDS -->', renderCards('')));
   for (const note of notes) {
     const tags = note.tags.map(tag => `<a href="../../index.html?q=${encodeURIComponent('tag:#'+tag.toLowerCase())}">#${escape(tag)}</a>`).join('');
     const related = (note.related || []).map(slug => {

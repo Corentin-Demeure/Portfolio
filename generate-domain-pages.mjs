@@ -33,6 +33,7 @@ for (const [domain, slug] of domains) {
       return name === escape(domain) ? link.replace('>', ' aria-current="page">') : link;
     })
     .replace(/((?:href|src)="|poster=")\.\//g, '$1../');
+  if (domain === 'Aerospace') html = html.replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '');
   const directory = path.join(root, slug);
   fs.mkdirSync(directory, { recursive: true });
   fs.writeFileSync(path.join(directory, 'index.html'), html);

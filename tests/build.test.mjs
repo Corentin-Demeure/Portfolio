@@ -116,6 +116,7 @@ test('article breadcrumbs replace the redundant return link', () => {
  for(const file of ['index.html','Aerospace/index.html','Biomedical/index.html']) {
   const page=fs.readFileSync(path.join(output,file),'utf8');
   assert.ok(!page.includes('Retour au fil'));
-  assert.match(page, /width="28" height="28" alt="" aria-hidden="true"/);
+  if (file === "Biomedical/index.html") assert.match(page, /width="28" height="28" alt="" aria-hidden="true"/);
+  else assert.ok(!page.includes('class="draft-notice"'));
  }
 });
