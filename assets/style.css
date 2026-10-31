@@ -942,24 +942,24 @@ body .sidebar .search-portrait #search { width:calc(100% - 20px); }
 }
 
 /* Keep the CV panel aligned with the search HUD and cap its portrait. */
-:root { --hud-height:64px; }
+:root { --hud-height:64px; --cv-portrait-size:124px; }
 body .sidebar { height:var(--hud-height); }
 body .right-rail { z-index:5; }
 body .right-rail .profile-card {
   box-sizing:border-box;
-  height:var(--hud-height);
-  min-height:var(--hud-height);
-  max-height:var(--hud-height);
+  height:calc(var(--cv-portrait-size) + 2px);
+  min-height:calc(var(--cv-portrait-size) + 2px);
+  max-height:calc(var(--cv-portrait-size) + 2px);
   padding:0 0 0 10px;
-  flex:0 0 var(--hud-height);
+  flex:0 0 calc(var(--cv-portrait-size) + 2px);
 }
 body .right-rail .profile-card .portfolio-portrait {
   box-sizing:border-box;
-  width:calc(var(--hud-height) - 2px);
-  height:calc(var(--hud-height) - 2px);
-  max-width:calc(var(--hud-height) - 2px);
-  max-height:calc(var(--hud-height) - 2px);
-  flex:0 0 calc(var(--hud-height) - 2px);
+  width:var(--cv-portrait-size);
+  height:var(--cv-portrait-size);
+  max-width:var(--cv-portrait-size);
+  max-height:var(--cv-portrait-size);
+  flex:0 0 var(--cv-portrait-size);
   object-fit:cover;
   margin:0;
 }
@@ -967,5 +967,7 @@ body .right-rail .cv-downloads { height:100%; }
 body .right-rail .cv-primary { color:#fff; line-height:1.25; }
 body .right-rail .recommendations { flex:1 1 auto; }
 @media(min-width:1281px) {
-  :root { --hud-height:52px; }
+  :root { --hud-height:52px; --cv-portrait-size:100px; }
 }
+
+.site-footer .google-contact img { display:block; width:16px; height:16px; flex:none; object-fit:contain; }
