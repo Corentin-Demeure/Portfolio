@@ -52,7 +52,7 @@ export function build() {
   if (path.dirname(output) !== root || path.basename(output) !== 'dist') throw new Error('Invalid output path');
   fs.rmSync(output, {recursive:true, force:true});
   fs.mkdirSync(output);
-  for (const entry of ['index.html', 'assets', 'images', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
+  for (const entry of ['index.html', 'assets', 'images', 'downloads', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
   const renderFeatured = featuredSelection(root, notes);
   const renderCards = (domain = '') => notes.filter(note => ((!domain || domain === 'Aerospace') ? note.slug === 'comment-aerospacelab-et-iris-peuvent-s-adapter-aux-missiles-anti-satellites-asat-russes' : note.domain === domain) && note.slug !== 'parcours-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';

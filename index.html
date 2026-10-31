@@ -18,7 +18,6 @@
     <aside class="sidebar">
       <div class="search-portrait">
         <input id="search" type="search" aria-label="Rechercher dans les notes" placeholder="Rechercher…">
-        <img class="portfolio-portrait" src="./images/corentin-portrait.png" alt="Corentin Demeure" width="400" height="400">
       </div>
       <nav aria-label="Fichiers">
         
@@ -43,7 +42,19 @@
         <a class="henallux-contact" href="mailto:etu51424@henallux.be"><img src="./assets/logos/henallux.svg" alt="Hénallux" width="18" height="21">etu51424@henallux.be</a>
       </footer>
     </div>
-    <aside class="recommendations" aria-label="Articles recommandés" hidden><h2>Mes autres essais ou projets</h2><div class="recommendation-list"></div></aside>
+    <div class="right-rail">
+      <section class="profile-card" aria-label="Portrait et CV">
+        <div class="cv-downloads">
+          <a class="cv-primary" href="./downloads/corentin-demeure-cv.pdf" download>Télécharger mon CV</a>
+          <details class="cv-dropdown">
+            <summary aria-label="Autres versions du CV">▾</summary>
+            <a href="./downloads/corentin-demeure-cv.pdf" download>Télécharger mon CV Aérospatial</a>
+          </details>
+        </div>
+        <img class="portfolio-portrait" src="./images/corentin-portrait.png" alt="Corentin Demeure" width="64" height="64">
+      </section>
+      <aside class="recommendations" aria-label="Articles recommandés" hidden><h2>Mes autres essais ou projets</h2><div class="recommendation-list"></div></aside>
+    </div>
     <script defer src="./assets/recommendations.js"></script>
   </body>
 </html>
