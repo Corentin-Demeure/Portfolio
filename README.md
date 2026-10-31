@@ -152,6 +152,6 @@ Une copie modifiée manuellement dans le dépôt bloque son écrasement à l’i
 
 Pour publier, committer les notes importées, les images et `.obsidian-import.json`, puis pousser sur GitHub. Le build GitHub utilise les copies déjà importées ; il n’accède pas au coffre Obsidian local. L’import et la surveillance ne déclenchent aucune publication.
 
-## Articles épinglés
+## Articles automatiques
 
-Modifier `featured.json` pour choisir et ordonner les articles du carrousel, indépendamment de la grille automatique. La clé `Tout` configure l’accueil ; les autres clés sont les domaines, par exemple `Aerospace`. Chaque liste contient les slugs des notes (noms sans `.md`). Une liste vide masque le carrousel. Le titre et la miniature sont repris depuis la note ; le parcours reste hors de la grille. Les autres articles peuvent apparaître dans la sélection et dans le fil. Navigation manuelle par flèches, vignettes ou touches directionnelles, sans défilement automatique. Reconstruire avec `npm run build`.
+Le carrousel et la grille utilisent la même sélection : toutes les notes Markdown non vides qui correspondent au domaine, et tous les domaines pour « Tout ». Les notes servant de pages de domaine restent des introductions et ne sont pas traitées comme des articles. Ajouter une note avec son titre, son domaine, ses tags et sa miniature suffit ; aucune liste de slugs à maintenir. La sélection est régénérée à chaque build et publication GitHub Pages. Navigation manuelle par flèches, vignettes ou touches directionnelles, sans défilement automatique. featured.json est un ancien fichier de configuration et n'est plus utilisé.

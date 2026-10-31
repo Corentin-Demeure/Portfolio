@@ -1,14 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { selectArticles } from './article-selection.mjs';
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 export function featuredSelection(root,notes){
- const config=JSON.parse(fs.readFileSync(path.join(root,'featured.json'),'utf8'));
- for(const [domain,slugs] of Object.entries(config)){
-  if(!Array.isArray(slugs)||new Set(slugs).size!==slugs.length)throw Error('Invalid featured selection: '+domain);
-  for(const slug of slugs){const note=notes.find(n=>n.slug===slug);if(!note || !note.html.trim() || domain!=='Tout' && note.domain!==domain)throw Error('Invalid featured article: '+slug);}
- }
  return domain=>{
-  const chosen=(config[domain||'Tout']||[]).map(slug=>notes.find(n=>n.slug===slug));
+  const chosen=selectArticles(notes, domain);
   if(!chosen.length)return '';
   const slides=chosen.map((n,i)=>{
    const image=n.thumbnail||'images/iss-my-class.png';if(!fs.existsSync(path.join(root,image)))throw Error('Missing featured image: '+image);

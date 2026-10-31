@@ -30,7 +30,7 @@ test('Markdown notes produce working pages, navigation, images and search', () =
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(!html.includes('Penser les satellites à l’échelle'));
     assert.ok(!html.includes('<summary>Aerospace</summary>'));
-    if (![path.join(output, 'index.html'), path.join(output, 'Aerospace/index.html')].includes(file)) assert.ok(!html.includes('class="media-card"'));
+    if (path.relative(output, file).split(path.sep).length > 2) assert.ok(!html.includes('class="media-card"'));
   }
   const sandbox = {window:{}};
   vm.runInNewContext(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'),sandbox);
@@ -142,4 +142,32 @@ test('search snippets show matching context, phrases and safe literal text', () 
  assert.ok(safe[0].map(s=>s.text).join('').includes('<img'));
  const overlap=searchSnippets({...literal,text:'C++ station spatiale'},'station "station spatiale"');
  assert.equal(overlap[0].filter(s=>s.highlight).length,1);
+});
+
+
+test('new Markdown articles automatically enter every matching feed and carousel', () => {
+ const fixtures = [
+  ['auto-computing', 'Informatique de Gestion', 'Informatique-de-gestion'],
+  ['auto-aerospace', 'Aerospace', 'Aerospace'],
+  ['auto-biomedical', 'Biomédical', 'Biomedical'],
+ ];
+ try {
+  for (const [slug, domain] of fixtures) fs.writeFileSync(new URL('../notes/'+slug+'.md', import.meta.url), '---\ntitle: "'+slug+'"\ndomain: "'+domain+'"\ntags: []\n---\nAutomatic article.\n');
+  build();
+  const home = fs.readFileSync(path.join(output,'index.html'),'utf8');
+  for (const [slug, domain, route] of fixtures) {
+   for (const html of [home, fs.readFileSync(path.join(output,route,'index.html'),'utf8')]) {
+    assert.ok(html.includes('class="media-card" data-domain="'+domain+'"'));
+    assert.ok(html.includes('aria-label="Lire : '+slug+'"'));
+    assert.ok(html.includes('aria-label="Afficher : '+slug+'"'));
+   }
+   for (const [, , otherRoute] of fixtures.filter(f => f[2] !== route)) assert.ok(!fs.readFileSync(path.join(output,otherRoute,'index.html'),'utf8').includes('aria-label="Afficher : '+slug+'"'));
+  }
+  const computing=fs.readFileSync(path.join(output,'Informatique-de-gestion/index.html'),'utf8');
+  assert.match(computing, /aria-label="Afficher : Migration de Biodimestica/);
+  assert.match(computing, /aria-label="Lire : Migration de Biodimestica/);
+ } finally {
+  for (const [slug] of fixtures) fs.unlinkSync(new URL('../notes/'+slug+'.md', import.meta.url));
+  build();
+ }
 });

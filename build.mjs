@@ -5,9 +5,10 @@ import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { generateDomainPages } from './generate-domain-pages.mjs';
 import { featuredSelection } from './featured.mjs';
+import { selectArticles } from './article-selection.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const pageRoutes = {'informatique-de-gestion':'Informatique-de-gestion', 'aventure-aerospatial':'Aerospace/Mon-aventure', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
+const pageRoutes = {'migration-biodimestica':'Informatique-de-gestion/migration-biodimestica', 'informatique-de-gestion':'Informatique-de-gestion', 'aventure-aerospatial':'Aerospace/Mon-aventure', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
 const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : domain === 'Aerospace' ? `Aerospace/${slug}/` : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
@@ -54,7 +55,7 @@ export function build() {
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', 'downloads', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
   const renderFeatured = featuredSelection(root, notes);
-  const renderCards = (domain = '') => notes.filter(note => ((!domain || domain === 'Aerospace') ? note.slug === 'comment-aerospacelab-et-iris-peuvent-s-adapter-aux-missiles-anti-satellites-asat-russes' : note.domain === domain) && note.slug !== 'aventure-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
+  const renderCards = (domain = '') => selectArticles(notes, domain).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
     const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 1600);
@@ -65,6 +66,15 @@ export function build() {
   generateDomainPages(output, renderFeatured, renderCards);
   fs.writeFileSync(path.join(output, 'index.html'), home.replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '').replace('<!-- FEATURED_ARTICLES -->', renderFeatured('')).replace('<!-- NOTE_CARDS -->', renderCards('')));
   for (const note of notes) {
+    // Keep the generated category feed; a landing note supplies optional intro text.
+    if (note.url.endsWith('/') && note.url.split('/').filter(Boolean).length === 1) {
+      const landing = path.join(output, note.url, 'index.html');
+      const page = fs.readFileSync(landing, 'utf8');
+      fs.writeFileSync(landing, page.replace('<!-- DOMAIN_INTRO -->', '<article class="prose">'+note.html+'</article>'));
+      continue;
+    }
+    // Keep the generated computing feed when its category note is empty.
+    if (note.slug === 'informatique-de-gestion' && !note.html.trim()) continue;
     const tags = note.tags.map(tag => `<a href="../../index.html?q=${encodeURIComponent('tag:#'+tag.toLowerCase())}">#${escape(tag)}</a>`).join('');
     const related = (note.related || []).map(slug => {
       const target = notes.find(item => item.slug === slug);

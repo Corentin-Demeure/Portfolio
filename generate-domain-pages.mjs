@@ -21,7 +21,7 @@ const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const [domain, slug] of domains) {
   let html = home.replace('<title>Portfolio</title>', `<title>${escape(domain === "Aerospace" ? "Aérospatial" : domain)}</title>`)
     .replace('<!-- FEATURED_ARTICLES -->', renderFeatured(domain))
-    .replace('<!-- NOTE_CARDS -->', renderCards(domain))
+    .replace('<!-- NOTE_CARDS -->', '<!-- DOMAIN_INTRO -->'+renderCards(domain))
     .replace('<main class="feed"', `<main data-domain="${escape(domain)}" class="feed"`)
     .replace(/<article class="media-card" data-domain="([^"]+)">[\s\S]*?<\/article>/g,
       (card, name) => name === escape(domain) ? card : '')
