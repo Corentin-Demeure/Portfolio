@@ -7,7 +7,7 @@ import { generateDomainPages } from './generate-domain-pages.mjs';
 import { featuredSelection } from './featured.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const pageRoutes = {'informatique-de-gestion':'Informatique-de-gestion', 'parcours-aerospatial':'Aerospace/Mon-parcours', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
+const pageRoutes = {'informatique-de-gestion':'Informatique-de-gestion', 'aventure-aerospatial':'Aerospace/Mon-aventure', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
 const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : domain === 'Aerospace' ? `Aerospace/${slug}/` : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
@@ -21,8 +21,8 @@ const plain = html => html.replace(/<[^>]+>/g, ' ').replace(/&(?:amp|lt|gt|quot|
 
 export function build() {
   const noteFiles = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? noteFiles(path.join(dir,e.name)) : e.name.endsWith('.md') ? [path.relative(path.join(root,'notes'),path.join(dir,e.name))] : []);
-  // Imported copies of the personal journey share the existing Mon-parcours page.
-  const journeyCopies = new Set(['portfolio-aerospatial.md', 'mon-parcours-aerospatial.md']);
+  // Imported copies of the personal journey share the existing Mon-aventure page.
+  const journeyCopies = new Set(['portfolio-aerospatial.md', 'mon-aventure-aerospatial.md']);
   const notes = noteFiles(path.join(root,'notes')).filter(name => !(path.dirname(name) === 'aerospace' && journeyCopies.has(path.basename(name)))).sort().map(name => {
     const {data, content} = matter(fs.readFileSync(path.join(root, 'notes', name), 'utf8'));
     if (typeof data.title !== 'string' || !data.title.trim() || !Object.hasOwn(domains, data.domain) || !Array.isArray(data.tags) || data.tags.some(tag => typeof tag !== 'string')) throw new Error(`Invalid title, domain or tags in ${name}`);
@@ -54,7 +54,7 @@ export function build() {
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', 'downloads', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
   const renderFeatured = featuredSelection(root, notes);
-  const renderCards = (domain = '') => notes.filter(note => ((!domain || domain === 'Aerospace') ? note.slug === 'comment-aerospacelab-et-iris-peuvent-s-adapter-aux-missiles-anti-satellites-asat-russes' : note.domain === domain) && note.slug !== 'parcours-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
+  const renderCards = (domain = '') => notes.filter(note => ((!domain || domain === 'Aerospace') ? note.slug === 'comment-aerospacelab-et-iris-peuvent-s-adapter-aux-missiles-anti-satellites-asat-russes' : note.domain === domain) && note.slug !== 'aventure-aerospatial' && note.html.trim() && note.url.split('/').filter(Boolean).length > 1).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
     const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 1600);

@@ -6,7 +6,7 @@ Site : https://corentin-demeure.github.io/Portfolio/
 
 ## Modifier une note sur son PC
 
-1. Ouvrir un fichier dans `notes/`, par exemple `notes/parcours-aerospatial.md`, avec un éditeur de texte.
+1. Ouvrir un fichier dans `notes/`, par exemple `notes/aventure-aerospatial.md`, avec un éditeur de texte.
 2. Modifier le texte Markdown sous le bloc de métadonnées.
 3. Enregistrer, committer et pousser sur `main` :
 
@@ -16,7 +16,7 @@ git commit -m "Mettre à jour mes notes"
 git push
 ```
 
-GitHub Actions reconstruit les pages, les tags et le catalogue de recherche, puis publie le résultat. Aucun HTML de note ni catalogue de recherche ne doit être modifié à la main. Les autres notes conservent leurs adresses `notes/<nom>/index.html`. Le fichier `notes/parcours-aerospatial.md` alimente directement `/Portfolio/Aerospace/`, unique page du portfolio aérospatial, sans miniature ni sous-menu.
+GitHub Actions reconstruit les pages, les tags et le catalogue de recherche, puis publie le résultat. Aucun HTML de note ni catalogue de recherche ne doit être modifié à la main. Les autres notes conservent leurs adresses `notes/<nom>/index.html`. Le fichier `notes/aventure-aerospatial.md` alimente directement `/Portfolio/Aerospace/`, unique page du portfolio aérospatial, sans miniature ni sous-menu.
 
 Exemple :
 
@@ -90,7 +90,7 @@ Seul le parcours aérospatial contient actuellement du texte, avec sa miniature 
 
 ## Articles aérospatiaux
 
-L’onglet « Aérospatial » conserve l’adresse /Portfolio/Aerospace/. Il présente les miniatures des articles. Le parcours complet est à /Portfolio/Aerospace/Mon-parcours/.
+L’onglet « Aérospatial » conserve l’adresse /Portfolio/Aerospace/. Il présente les miniatures des articles. Le parcours complet est à /Portfolio/Aerospace/Mon-aventure/.
 
 Pour ajouter un article, créer notes/mon-article.md avec title, domain: Aerospace, tags, related et thumbnail: images/ma-photo.jpg. Écrire le texte sous les métadonnées et ajouter l’image dans images/. Après le push, la miniature apparaît automatiquement dans Tout et Aérospatial ; l’article est publié à /Portfolio/Aerospace/mon-article/.
 

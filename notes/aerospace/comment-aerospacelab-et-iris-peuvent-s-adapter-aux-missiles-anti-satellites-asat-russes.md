@@ -50,8 +50,7 @@ Désormais avec Starship et le stack industriel derrière Starlink, en orbite ba
 
 Le second avantage est l'écosystème SpaceX lui-même ; SpaceX est devenu un écosystème antifragile car chacune des élements majeurs de SpaceX produisent et nourrissent les autres élements au sein de l'écosystème. 
 ### > De l’intégration verticale à l’essaimage industriel : l’exemple de Castelion
-
-L’avantage de SpaceX dépasse les activités que l’entreprise possède directement. Il existe aussi dans les compétences, les méthodes de production et les équipes qui peuvent essaimer vers d’autres entreprises. Castelion, fondée en 2022 par trois anciens de SpaceX, illustre cette diffusion : appliquer le développement rapide, les essais fréquents et la conception pour la fabrication en série à des armes hypersoniques dont le coût et les volumes de production constituent des enjeux militaires.
+L’avantage de SpaceX dépasse les activités que l’entreprise possède directement. Il existe aussi dans les compétences, les méthodes de production et les équipes qui peuvent essaimer vers d’autres entreprises. [Castelion](https://www.castelion.com/), fondée en 2022 par trois anciens de SpaceX, illustre cette diffusion : appliquer le développement rapide, les essais fréquents et la conception pour la fabrication en série à des armes hypersoniques dont le coût et les volumes de production constituent des enjeux militaires.
 
 Il faut distinguer cette filiation industrielle d’une relation opérationnelle. Les informations publiques ne permettent pas de présenter Castelion comme une filiale de SpaceX, un fournisseur établi de Starshield ou un fabricant d’intercepteurs spatiaux destiné à protéger la constellation. La complémentarité possible se situe à l’échelle des forces armées : des infrastructures spatiales fournissent des observations et des communications, tandis que d’autres industriels fournissent les moyens d’action. Leur intégration relève du client militaire et ne suppose pas une propriété commune.
 
@@ -64,7 +63,6 @@ Dans le domaine spatial, le même mécanisme d’essaimage pourrait concerner le
 L’objectif serait ainsi de combiner une intégration verticale sélective chez Aerospacelab avec un réseau d’entreprises autonomes capables de servir plusieurs clients. L’autonomie européenne dépendrait alors d’une capacité collective à produire, adapter et remplacer ses infrastructures, sans exiger qu’une seule entreprise maîtrise toute la chaîne.
 
 # > Différente statégie pour Aerospacelab 
-
 Aerospacelab ne bénéficie cette décennie et la décennie prochaine d'aucun de ces deux avantages et ne peut donc pas se permettre de perdre des satellites. 
 Pour se préparer aux très probables ASAT russes, je suggère de créer deux espèces de satellites différentes. Une espèce de satellite en orbite basse, optimisé purement pour la production de masse avec une durée de vie moins longue, et une espèce satellite pour orbite MEO avec une durée de vie plus longue. 
 Je suggère aussi d'augmenter le nombre de ces satellites en orbite moyenne - hors de portée des armes russes car d'ici 2040 il est possible que seuls eux restent plus d'1 an en orbite.

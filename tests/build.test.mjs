@@ -20,12 +20,12 @@ test('Markdown notes produce working pages, navigation, images and search', () =
       assert.ok(fs.existsSync(path.resolve(path.dirname(file), relative)), `${file}: missing ${value}`);
     }
   }
-  const aerospace = fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8');
+  const aerospace = fs.readFileSync(path.join(output,'Aerospace/Mon-aventure/index.html'),'utf8');
   assert.match(aerospace, /<img src="..\/..\/images\/(?:iss-my-class\.png|obsidian\/[a-f0-9]+\.png)"/);
-  assert.match(aerospace, /Passion pour le spatial/);
+  assert.match(aerospace, /Passion pour l(?:&#39;|’)aérospatial/);
   assert.match(aerospace, /href="..\/..\/Aerospace\/"/);
   assert.ok(!fs.existsSync(path.join(output,'notes/satellites/index.html')));
-  assert.ok(!fs.existsSync(path.join(output,'notes/parcours-aerospatial/index.html')));
+  assert.ok(!fs.existsSync(path.join(output,'notes/aventure-aerospatial/index.html')));
   for (const file of pages) {
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(!html.includes('Penser les satellites à l’échelle'));
@@ -39,14 +39,14 @@ test('Markdown notes produce working pages, navigation, images and search', () =
 });
 
 test('editing only Markdown updates the rendered note and search catalogue', () => {
-  const source = new URL('../notes/parcours-aerospatial.md',import.meta.url);
+  const source = new URL('../notes/aventure-aerospatial.md',import.meta.url);
   const original = fs.readFileSync(source,'utf8');
   try {
     fs.writeFileSync(source,original+'\n## Modification de vérification\n\nMarkdown-autoupdate-9274.\n\n[Autre note](biomedical.md)\n');
     build();
-    assert.match(fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8'), /id="modification-de-vérification"/);
+    assert.match(fs.readFileSync(path.join(output,'Aerospace/Mon-aventure/index.html'),'utf8'), /id="modification-de-vérification"/);
     assert.match(fs.readFileSync(path.join(output,'assets/notes.js'),'utf8'), /Markdown-autoupdate-9274/);
-    assert.match(fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8'), /href="..\/..\/Biomedical\/"/);
+    assert.match(fs.readFileSync(path.join(output,'Aerospace/Mon-aventure/index.html'),'utf8'), /href="..\/..\/Biomedical\/"/);
     fs.writeFileSync(source,original.replace('domain: "Aerospace"','domain: "Unknown"'));
     assert.throws(build,/Invalid title, domain or tags/);
   } finally {
@@ -74,7 +74,7 @@ test('aerospace cards link to the nested article and show the ISS class photo', 
  for (const page of ['index.html', 'Aerospace/index.html']) {
   const html = fs.readFileSync(path.join(output,page),'utf8');
   assert.match(html, /class="media-card"/);
-  assert.match(html, /Aerospace\/Mon-parcours\//);
+  assert.match(html, /Aerospace\/Mon-aventure\//);
   assert.match(html, /images\/iss-my-class.png/);
   assert.match(html, /data-domain="Aerospace"[^>]*>Aérospatial<\/a>/);
  }
@@ -110,7 +110,7 @@ test('domain backgrounds publish without private medical content', () => {
 
 test('article breadcrumbs replace the redundant return link', () => {
  build();
- const html=fs.readFileSync(path.join(output,'Aerospace/Mon-parcours/index.html'),'utf8');
+ const html=fs.readFileSync(path.join(output,'Aerospace/Mon-aventure/index.html'),'utf8');
  assert.ok(!html.includes('Retour au fil'));
  assert.match(html, /aria-label="Fil d’Ariane"><a href="..\/..\/Aerospace\/">Aerospace<\/a> \/ Essai<\/nav>/);
  for(const file of ['index.html','Aerospace/index.html','Biomedical/index.html']) {
