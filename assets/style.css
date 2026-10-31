@@ -973,3 +973,8 @@ body .right-rail .recommendations { flex:1 1 auto; }
 .site-footer .google-contact img { display:block; width:16px; height:16px; flex:none; object-fit:contain; }
 
 .recommendations h2 .recommendation-count { display:inline; white-space:nowrap; font-size:90%; font-weight:400; color:#fff; text-shadow:none; }
+
+/* Article path and tags form one continuous metadata row. */
+.article-meta { display:flex; align-items:baseline; flex-wrap:nowrap; gap:10px; margin:0 0 8px; overflow-x:auto; white-space:nowrap; }
+.article-meta > .breadcrumb, .article-meta > .note-tags { flex:none; margin:0; }
+.article-meta > .note-tags { display:flex; flex-wrap:nowrap; gap:8px; }

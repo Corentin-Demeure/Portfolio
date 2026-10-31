@@ -77,7 +77,7 @@ export function build() {
     const values = {
       title: escape(note.title), description: escape(plain(note.html).slice(0, 160)),
       domainUrl: '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html'),
-      article: note.html.trim() ? `<nav class="note-tags" aria-label="Tags de la note">${tags}</nav>\n${breadcrumb}\n<h1>${escape(note.title)}</h1>\n<p class="article-byline">Corentin Demeure</p>\n${note.html}` : '',
+      article: note.html.trim() ? `<div class="article-meta">${breadcrumb}<nav class="note-tags" aria-label="Tags de la note">${tags}</nav></div>\n<h1>${escape(note.title)}</h1>\n<p class="article-byline">Corentin Demeure</p>\n${note.html}` : '',
       related,
     };
     let html = layout.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key]);
@@ -88,6 +88,7 @@ export function build() {
         .replaceAll('../../', '../');
     }
     if (!note.html.trim()) html = html.replace(/<aside class="connections">[\s\S]*?<\/aside>/, '');
+    if (note.domain === 'Aerospace') html = html.replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '');
     const dest = path.join(output, note.url, note.url.endsWith('/') ? 'index.html' : '');
     fs.mkdirSync(path.dirname(dest), {recursive:true}); fs.writeFileSync(dest, html);
   }
