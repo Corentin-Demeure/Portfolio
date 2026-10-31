@@ -971,3 +971,5 @@ body .right-rail .recommendations { flex:1 1 auto; }
 }
 
 .site-footer .google-contact img { display:block; width:16px; height:16px; flex:none; object-fit:contain; }
+
+.recommendations h2 .recommendation-count { display:inline; white-space:nowrap; font-size:90%; font-weight:400; color:#fff; text-shadow:none; }

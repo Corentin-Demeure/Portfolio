@@ -26,5 +26,12 @@
     link.append(image,title,byline,label);
     panel.querySelector('.recommendation-list').append(link);
   }
+  const heading = panel.querySelector('h2');
+  if (heading) {
+    const count = document.createElement('span');
+    count.className = 'recommendation-count';
+    count.textContent = chosen.length + (chosen.length === 1 ? ' article chargé' : ' articles chargés');
+    heading.append(document.createTextNode(' '), count);
+  }
   panel.hidden = !chosen.length;
 })();
