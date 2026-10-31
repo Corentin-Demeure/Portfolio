@@ -813,17 +813,19 @@ main.feed { padding-top: 18px; }
 body:has(.feed-tabs a[data-domain="Projets techniques"][aria-current="page"]) {
   background-image:url("./photos/PlumbingSystemHSUS.avif");
 }
-/* Compact search header, flush with the portrait frame. */
+/* Translucent outer HUD with a smaller opaque search field centered inside. */
 body .sidebar {
   --portrait-size:64px;
   height:var(--portrait-size);
   min-height:0;
-  padding:0 0 0 16px;
+  padding:0;
   border:0;
+  background:rgba(205,225,245,.25);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.8);
   overflow:hidden;
 }
 body .sidebar > nav { display:none; }
-.search-portrait {
+body .sidebar .search-portrait {
   display:grid;
   height:100%;
   grid-template-columns:minmax(0,1fr) var(--portrait-size);
@@ -832,16 +834,21 @@ body .sidebar > nav { display:none; }
   margin:0;
   padding:0;
 }
-body .search-portrait #search {
-  width:100%;
+body .sidebar .search-portrait #search {
+  display:block;
+  box-sizing:border-box;
+  width:calc(100% - 32px);
   min-width:0;
-  height:40px;
-  margin:0;
+  height:38px;
+  margin:0 auto;
   padding:8px 10px;
+  color:#304d68;
+  background:#dce7f0;
   border:1px solid rgba(255,255,255,.85);
   border-radius:5px;
-  box-shadow:inset 0 0 0 1px rgba(215,234,255,.35);
+  box-shadow:none;
 }
+body .sidebar .search-portrait #search::placeholder { color:#687783; }
 .portfolio-portrait {
   display:block;
   position:static;
@@ -858,4 +865,5 @@ body .search-portrait #search {
 }
 @media(min-width:1281px) {
   body .sidebar { --portrait-size:52px; }
+  body .sidebar .search-portrait #search { width:calc(100% - 20px); height:34px; }
 }
