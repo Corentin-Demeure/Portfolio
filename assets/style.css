@@ -813,3 +813,10 @@ main.feed { padding-top: 18px; }
 body:has(.feed-tabs a[data-domain="Projets techniques"][aria-current="page"]) {
   background-image:url("./photos/PlumbingSystemHSUS.avif");
 }
+/* Portrait overlaps the right end of the search field on every page. */
+.search-portrait { position:relative; min-height:46px; display:flex; align-items:center; }
+.search-portrait #search { padding-right:66px; min-width:0; }
+.portfolio-portrait { position:absolute; z-index:1; right:-16px; top:50%; transform:translateY(-50%); width:72px; height:72px; object-fit:cover; object-position:center; border-radius:0; }
+@media(min-width:1281px) {
+  .portfolio-portrait { right:0; width:58px; height:58px; }
+}
