@@ -6,7 +6,7 @@
   const base = new URL('../', script.src);
   const home = new URL('index.html', base);
   const notes = window.PortfolioNotes;
-  const { matchesQuery, tagKey } = window.PortfolioSearch;
+  const { matchesQuery, tagKey, searchSnippets } = window.PortfolioSearch;
   const input = document.getElementById('search');
   const results = document.getElementById('search-results');
   const main = document.querySelector('main');
@@ -77,6 +77,16 @@
         tags.append(link);
       }
       row.append(tags);
+      for (const segments of searchSnippets(note, query)) {
+        const excerpt = document.createElement('p');
+        excerpt.className = 'search-snippet';
+        for (const segment of segments) {
+          const part = document.createElement(segment.highlight ? 'mark' : 'span');
+          part.textContent = segment.text;
+          excerpt.append(part);
+        }
+        row.append(excerpt);
+      }
       results.append(row);
     }
   }

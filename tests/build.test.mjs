@@ -120,3 +120,26 @@ test('article breadcrumbs replace the redundant return link', () => {
   else assert.ok(!page.includes('class="draft-notice"'));
  }
 });
+
+test('search snippets show matching context, phrases and safe literal text', () => {
+ const context = {};
+ vm.runInNewContext(fs.readFileSync(new URL('../assets/search.js', import.meta.url),'utf8'),context);
+ const {searchSnippets,matchesQuery}=context.PortfolioSearch;
+ const body='Introduction sans correspondance. '.repeat(30)+'Une station spatiale observe la Terre. '+'Autre paragraphe. '.repeat(30)+'Le satellite termine sa mission.';
+ const note={title:'Essai',domain:'Aerospace',tags:['espace'],text:'Essai Aerospace '+body};
+ const snippets=searchSnippets(note,'"station spatiale" satellite -absent tag:espace');
+ assert.equal(snippets.length,2);
+ assert.ok(snippets[0].some(s=>s.highlight && s.text==='station spatiale'));
+ assert.ok(snippets[1].some(s=>s.highlight && s.text==='satellite'));
+ assert.ok(snippets[0].map(s=>s.text).join('').startsWith('… '));
+ assert.ok(snippets[0].map(s=>s.text).join('').length<280);
+ assert.ok(matchesQuery(note,'"station spatiale" satellite -absent tag:espace'));
+ assert.ok(searchSnippets(note,'tag:espace')[0].every(s=>!s.highlight));
+ const literal={title:'Test',domain:'Aerospace',tags:[],text:'Test Aerospace <img src=x onerror=alert(1)> C++ et École'};
+ const safe=searchSnippets(literal,'C++ ÉCOLE');
+ assert.ok(safe[0].some(s=>s.highlight && s.text==='C++'));
+ assert.ok(safe[0].some(s=>s.highlight && s.text==='École'));
+ assert.ok(safe[0].map(s=>s.text).join('').includes('<img'));
+ const overlap=searchSnippets({...literal,text:'C++ station spatiale'},'station "station spatiale"');
+ assert.equal(overlap[0].filter(s=>s.highlight).length,1);
+});
