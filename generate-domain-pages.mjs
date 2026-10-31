@@ -8,12 +8,14 @@ const domains = [
   ['Biomédical', 'Biomedical'],
   ['Agronomie', 'Agronomie'],
   ['Biologie spéculative', 'Biologie-speculative'],
+  ['Informatique de Gestion', 'Informatique-de-gestion'],
   ['Projets techniques', 'Travail-manuel'],
+  ['Biologie spéculative', 'Biologie-speculative'],
   ['Urbanisme & durabilité', 'Urbanisme'],
 ];
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
 
-// Run after editing the home feed to refresh the six standalone domain pages.
+// Run after editing the home feed to refresh the standalone domain pages.
 export function generateDomainPages(root = sourceRoot, renderFeatured = () => '', renderCards = () => '') {
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 for (const [domain, slug] of domains) {
@@ -35,6 +37,6 @@ for (const [domain, slug] of domains) {
   fs.mkdirSync(directory, { recursive: true });
   fs.writeFileSync(path.join(directory, 'index.html'), html);
 }
-console.log('Generated six domain pages.');
+console.log('Generated domain pages.');
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) generateDomainPages();

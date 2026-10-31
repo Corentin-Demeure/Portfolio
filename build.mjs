@@ -7,10 +7,11 @@ import { generateDomainPages } from './generate-domain-pages.mjs';
 import { featuredSelection } from './featured.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const pageRoutes = {'parcours-aerospatial':'Aerospace/Mon-parcours', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
+const pageRoutes = {'informatique-de-gestion':'Informatique-de-gestion', 'parcours-aerospatial':'Aerospace/Mon-parcours', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
 const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : domain === 'Aerospace' ? `Aerospace/${slug}/` : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
+  'Informatique de Gestion': 'Informatique-de-gestion',
   Aerospace: 'Aerospace', 'Biomédical': 'Biomedical', Agronomie: 'Agronomie',
   'Biologie spéculative': 'Biologie-speculative', 'Projets techniques': 'Travail-manuel',
   'Urbanisme & durabilité': 'Urbanisme', Transversal: '',
