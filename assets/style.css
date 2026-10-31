@@ -813,10 +813,36 @@ main.feed { padding-top: 18px; }
 body:has(.feed-tabs a[data-domain="Projets techniques"][aria-current="page"]) {
   background-image:url("./photos/PlumbingSystemHSUS.avif");
 }
-/* Portrait overlaps the right end of the search field on every page. */
-.search-portrait { position:relative; min-height:46px; display:flex; align-items:center; }
-.search-portrait #search { padding-right:66px; min-width:0; }
-.portfolio-portrait { position:absolute; z-index:1; right:-16px; top:50%; transform:translateY(-50%); width:72px; height:72px; object-fit:cover; object-position:center; border-radius:0; }
+/* Search and portrait share one header row, each with its own HUD frame. */
+.search-portrait {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 64px;
+  align-items:center;
+  gap:12px;
+}
+body .search-portrait #search {
+  width:100%;
+  min-width:0;
+  height:40px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:5px;
+  box-shadow:inset 0 0 0 1px rgba(215,234,255,.35);
+}
+.portfolio-portrait {
+  display:block;
+  position:static;
+  width:64px;
+  height:64px;
+  padding:3px;
+  object-fit:cover;
+  object-position:center;
+  background:rgba(237,246,255,.22);
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:5px;
+  box-shadow:inset 0 0 0 1px rgba(215,234,255,.4);
+}
 @media(min-width:1281px) {
-  .portfolio-portrait { right:0; width:58px; height:58px; }
+  .search-portrait { grid-template-columns:minmax(0,1fr) 52px; gap:8px; }
+  .portfolio-portrait { width:52px; height:52px; }
 }
