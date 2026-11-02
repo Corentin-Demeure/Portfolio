@@ -34,6 +34,21 @@ for (const [domain, slug] of domains) {
     })
     .replace(/((?:href|src)="|poster=")\.\//g, '$1../');
   if (domain === 'Aerospace') html = html.replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '');
+  if (domain === 'Aerospace') {
+    const navigation = '<nav class="feed-tabs" aria-label="Rubriques Aerospace"><a href="../Aerospace/Essais/">Essais</a><a href="../Aerospace/Projets/">Projets</a></nav>';
+    html = html.replace('<!-- DOMAIN_INTRO -->', navigation+'<!-- DOMAIN_INTRO -->');
+    for (const category of ['Essais', 'Projets']) {
+      let categoryPage = home.replace('<title>Portfolio</title>', '<title>Aerospace / '+category+'</title>')
+        .replace('<!-- FEATURED_ARTICLES -->', '')
+        .replace('<!-- NOTE_CARDS -->', '<nav class="feed-tabs" aria-label="Rubriques Aerospace"><a href="./Aerospace/">Aerospace</a><a href="./Aerospace/Essais/">Essais</a><a href="./Aerospace/Projets/">Projets</a></nav><h1>'+category+'</h1>'+renderCards(domain, category))
+        .replace('<main class="feed"', '<main data-domain="Aerospace" class="feed"')
+        .replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '')
+        .replace(/((?:href|src)="|poster=")\.\//g, '$1../../');
+      const categoryDir = path.join(root, slug, category);
+      fs.mkdirSync(categoryDir, {recursive:true});
+      fs.writeFileSync(path.join(categoryDir,'index.html'), categoryPage);
+    }
+  }
   const directory = path.join(root, slug);
   fs.mkdirSync(directory, { recursive: true });
   fs.writeFileSync(path.join(directory, 'index.html'), html);

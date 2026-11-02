@@ -8,8 +8,9 @@ import { featuredSelection } from './featured.mjs';
 import { selectArticles } from './article-selection.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const pageRoutes = {'migration-biodimestica':'Informatique-de-gestion/migration-biodimestica', 'informatique-de-gestion':'Informatique-de-gestion', 'aventure-aerospatial':'Aerospace/Mon-aventure', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
-const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : domain === 'Aerospace' ? `Aerospace/${slug}/` : `notes/${slug}/index.html`;
+const pageRoutes = {'migration-biodimestica':'Informatique-de-gestion/migration-biodimestica', 'informatique-de-gestion':'Informatique-de-gestion', 'aventure-aerospatial':'Aerospace/Essais/Mon-aventure', biomedical:'Biomedical', 'migration-craw':'Agronomie', 'biologie-speculative':'Biologie-speculative', 'louvain-la-neuve':'Urbanisme', 'travail-manuel':'Travail-manuel'};
+const projectSlugs = new Set(['contributions-wikipedia-spacex-starlink', 'modelisation-spacex-tesla']);
+const noteUrl = (slug, domain) => pageRoutes[slug] ? pageRoutes[slug]+'/' : domain === 'Aerospace' ? `Aerospace/${projectSlugs.has(slug) ? 'Projets' : 'Essais'}/${slug}/` : `notes/${slug}/index.html`;
 export const output = path.join(root, 'dist');
 const domains = {
   'Informatique de Gestion': 'Informatique-de-gestion',
@@ -55,7 +56,7 @@ export function build() {
   fs.mkdirSync(output);
   for (const entry of ['index.html', 'assets', 'images', 'downloads', '.nojekyll', 'favicon.ico']) fs.cpSync(path.join(root, entry), path.join(output, entry), {recursive:true});
   const renderFeatured = featuredSelection(root, notes);
-  const renderCards = (domain = '') => selectArticles(notes, domain).map(note => {
+  const renderCards = (domain = '', category = '') => selectArticles(notes, domain).filter(note => !category || note.url.startsWith(`Aerospace/${category}/`)).map(note => {
     const image = note.thumbnail || 'images/iss-my-class.png';
     if (!fs.existsSync(path.join(root, image))) throw new Error('Missing thumbnail: '+image);
     const excerpt = plain(note.html.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/g, '')).slice(0, 1600);
@@ -83,7 +84,7 @@ export function build() {
     }).join('\n') || '<p>Pas encore de lien entrant.</p>';
     const domainUrl = '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html');
     const category = (note.eyebrow || '').includes('/') ? (note.eyebrow || '').slice((note.eyebrow || '').indexOf('/') + 1).trim() : '';
-    const breadcrumb = '<nav class="eyebrow breadcrumb" aria-label="Fil d’Ariane"><a href="'+domainUrl+'">'+escape(note.domain)+'</a>'+(category ? ' / '+escape(category) : '')+'</nav>';
+    const breadcrumb = '<nav class="eyebrow breadcrumb" aria-label="Fil d’Ariane"><a href="'+domainUrl+'">'+escape(note.domain)+'</a>'+(note.domain === 'Aerospace' ? ' / <a href="../../Aerospace/'+(projectSlugs.has(note.slug) ? 'Projets' : 'Essais')+'/">'+(projectSlugs.has(note.slug) ? 'Projets' : 'Essais')+'</a>' : (category ? ' / '+escape(category) : ''))+'</nav>';
     const values = {
       title: escape(note.title), description: escape(plain(note.html).slice(0, 160)),
       domainUrl: '../../'+(domains[note.domain] ? domains[note.domain]+'/' : 'index.html'),
@@ -99,8 +100,17 @@ export function build() {
     }
     if (!note.html.trim()) html = html.replace(/<aside class="connections">[\s\S]*?<\/aside>/, '');
     if (note.domain === 'Aerospace') html = html.replace(/\s*<aside class="draft-notice"[^>]*>[\s\S]*?<\/aside>/, '');
+    if (note.domain === 'Aerospace') html = html.replaceAll('../../', '../../../');
     const dest = path.join(output, note.url, note.url.endsWith('/') ? 'index.html' : '');
     fs.mkdirSync(path.dirname(dest), {recursive:true}); fs.writeFileSync(dest, html);
+  }
+  // Preserve bookmarks and links to the previous Aerospace article addresses.
+  for (const note of notes.filter(n => n.domain === 'Aerospace')) {
+    const oldRoute = note.slug === 'aventure-aerospatial' ? 'Mon-aventure' : note.slug;
+    const destination = '../'+note.url.slice('Aerospace/'.length);
+    const directory = path.join(output, 'Aerospace', oldRoute);
+    fs.mkdirSync(directory, {recursive:true});
+    fs.writeFileSync(path.join(directory,'index.html'), '<!doctype html><html lang="fr"><meta charset="utf-8"><title>'+escape(note.title)+'</title><meta http-equiv="refresh" content="0;url='+destination+'"><a href="'+destination+'">'+escape(note.title)+'</a></html>');
   }
   const catalogue = notes.filter(note => note.html.trim()).map(({title,domain,tags,text,url,thumbnail,thumbnailAlt}) => ({title,domain,tags,text,url,thumbnail: thumbnail || 'images/iss-my-class.png',thumbnailAlt: thumbnailAlt || title}));
   fs.writeFileSync(path.join(output, 'assets/notes.js'), '// Generated from notes/*.md.\nwindow.PortfolioNotes = '+JSON.stringify(catalogue,null,2)+';\n');

@@ -10,10 +10,7 @@ thumbnail: "images/iss-my-class.png"
 Sommaire:
 	Passion pour l'aérospatial
 	Bachelier en Informatique de Gestion
-	Wikipédien anglophone spécialisé sur SpaceX et Starlink
-	Création de SpaceX Starshield sur Wikipedia et rédaction de Starlink in the Russo-Ukrainian War 
 	Archive de débat concernant la faisabilité des lanceurs pleinement réutilisables
-	Proto-projet de simulation du complexe industriel SpaceX-Tesla, Inc.
 	Annexe
 	
 # > Passion pour l'aérospatial
@@ -36,40 +33,6 @@ J'ai longuement hésiter entre l'aérospatial ou la biologie, mais je ressentais
 J'ai choisi l'Henallux plutôt que l'Université de Namur car déjà à ce moment (vers 2021) je trainais dans des communautés de singularitariens qui spéculaient sur le progrès fulgurant à la suite de l'arrivée de l'IA et je ne voyais pas le monde académique comme une trajectoire idéale, je le voyais comme trop théorique et dispersé. Je voulais arriver et directement programmer.
 En 2025 j'ai fait une pause dans mon bachelier en Informatique de Gestion vis-à-vis de mes inquiétudes face à l'intelligence artificielle et car je ne voyais plus où j'allais. J'étais en développement web mais je savais que ça ne correspondait pas à mes compétences. Je vois le développement web comme un excellent outil dans la boite à outils pour être développeur de systèmes, et pour mieux tirer parti de ces outils il faut les appliquer à l'aide de solides compétences propres au domaine d'application.
 Durant cette pause d'un an, je me suis énormément renseigné et j'ai expérimenté avec tout un tas de sujets dont l'agentique, le biomédical, la gestion d'entreprise ; j'ai même tenté de démarrer deux projets entrepreunarial - un en modélisation endocrinologique et un en modélisation de SpaceX-Tesla. J'ai beaucoup appris. Je suis revenu à l'Henallux avec une toute autre perspective.
-# > Wikipédien anglophone spécialisé sur SpaceX et Starlink
-En 2023, j'ai créé la page sur le deuixème lancement du Starship sur le Wikipédia en anglais qui s'appelait à sa création _[SpaceX Starship Integrated Flight Test 2](https://en.wikipedia.org/wiki/Starlink_in_the_Russo-Ukrainian_war)_, maintenant _Starship flight test 2_. J'ai aussi revamp la page sur le Starship en me concentrant sur les coûts de celui-ci.
-J'ai beaucoup contribué la page sur la [SpaceX Starbase](https://en.wikipedia.org/wiki/SpaceX_Starbase), surtout les impacts locaux et sur l'environnement.
-## > Création de SpaceX Starshield sur Wikipedia et rédaction de Starlink in the Russo-Ukrainian War 
-Je pense que cette section sera intéressante pour Aerospacelab parce que ce domaine de connaissance rejoint votre contrat IRIS² de Septembre 2026.
-
-De 2023 à 2024, j'ai revamp le petit article Wikipédia "[Starlink services in Ukraine](https://en.wikipedia.org/w/index.php?title=Starlink_in_the_Russo-Ukrainian_war&oldid=1146950032)" (2022-2023) en l'article massif "[Starlink in the Russo-Ukrainian War](https://en.wikipedia.org/wiki/Starlink_in_the_Russo-Ukrainian_war)" (2023-2026) que je vous invite à zyeuter au lien que j'ai intégré à l'html.
-Cet article est le plus compliqué que j'ai construit. C'est un travail organique de 150 sources. Après l'introduction qui résume, il pose l'existence Starlink avant l'invasion en Ukraine puis explore la situation sont tous les angles et point de vues ; 
-* les usages civils, 
-* les usages militaires par l'Ukraine, 
-* l'implication du Pentagone et Départment de la Défense américaine dans la situation, 
-* les restrictions imposées par SpaceX et leurs motifs,
-* les autres pannes du réseau Starlink,
-* le fameux accident du déni de couverture Starlink au large de la Crimée qui a vallu à Musk un torrent médiatique et qui m'a poussé a créé l'article pour limiter la désinformation, 
-* les contre-mesures de la Russie et l'usage illicite de Starlink par Moscou, 
-* la liste des fournitures de Starlink.
-
-Je n'ai pas spécialement utilisé d'outils de traduction, j'avais acquis de l'expérience et compétences pour la gestion de larges sites et communautés en anglais en 2021 et je modifiais déjà le Wikipédia en anglais depuis un moment. J'ai notamment travaillé sur plusieurs articles dont _[Starship HLS](https://en.wikipedia.org/wiki/Starship_HLS)_ (la version alunisseur du Starship) , _Habitability of exomoons_ (ayant fusionné avec _[Habitability of natural satellites](https://en.wikipedia.org/wiki/Habitability_of_natural_satellites) et _[Timeline of Space Exploration](https://en.wikipedia.org/wiki/Timeline_of_space_exploration)_ (notamment les habitats spatiaux (_BEAM_), l'impactage d'astéroides (_DART_), l'in situ resource utilization (_MOXIE), Parker Solar Probe, JWST) .
-
-Je me suis senti enjoint de fournir un tel effort sur l'article _Starlink in the Russo-Ukrainian War_, qui m'a pris de nombreuses soirées, car la désinformation sur Reddit lié à l'événement était très élévée. 
-Je lisais gens de différents côtés de la situation ; américains, ukrainiens, russes, europééens tentaint à chaque fois de défendre des point de vues différents mais n'arrivaient pas à s'accorder sur la vérité des événements car elle était éparpillée dans des centaines de sources.
-En construisant l'article, j'ai reconstruit une modèle textuel des événements concernant Starlink en Ukraine. 
-Je l'ai rédigé, renomé en son nom actuel et décidé du nom de chacun de titres de section quand j'ai créé la structure de l'article.
-J'ai également choisit toutes les images. J'ai même créé la carte du coverage de Starlink en Ukrain moi-même dans paint.net et je l'ai uploadé sur Wikimedia.
-
-Starlink durant la Guerre Russo-Ukrainienne est pertinent à comprendre pour IRIS2 car il se situe à l'intersection de la première guerre impliquant un actur spatial - tout en faisant intervenir du combat de drone, de la communication drone-satellite, drone naval-satellite, de la cybersécurité des satellites, la logistique d'approvisionnement des terminals, la gestion en temps de crise, un système anti-satellite russe et d'autres concepts multidisciplinaires.
-Je pense que comprendre Starlink durant la guerre russo-ukrainienne, c'est comprendre les guerres des années 2030.
-
-Sur la même période en 2023, j'ai créé l'article [SpaceX Starshield](https://en.wikipedia.org/wiki/SpaceX_Starshield) quand il n'était qu'un projet discret de SpaceX, avant même que le sujet soit connu de 99% du public américain.
-L'article me paraissait nécessaire : Starshield commençait un petit peu à faire parler de lui or l'information à son égard n'était pas centralisée quelque part sur Internet. La croissance en importance du projet Starshield de SpaceX semblait inévitable et les premiers satellites Starshield avaient été lancés.
-En Europe son équivalent c'est IRIS², pour lequel Aerospacelab a un contrat. (Voir mon blog sur [IRIS2 : Comment Aerospacelab et IRIS² peuvent s'adapter aux missiles anti-satellites (ASAT) russes ?](https://corentin-demeure.github.io/Portfolio/Aerospace/comment-aerospacelab-et-iris-peuvent-s-adapter-aux-missiles-anti-satellites-asat-russes/))
-L'article _SpaceX Starshield_ est toujours régulièrement référencé sur Twitter, Reddit ainsi que par Gemini, souvent par des Européens, Américains, Ukrainiens et Russes.
-
-Des piques de vues et de mention des deux articles dans des débats en lignes se produisent à chaque fois qu'une nouvelle vague médiatique concentre de l'attention internationale sur la situation - comme récemment quand SpaceX a limité le débit Starlink ukrainien à 160 m/s. 
 ## > Archive de débat concernant la faisabilité des lanceurs pleinement réutilisables
 En Avril 2023, lorsque Vincent de la Chaine Stardust avait développé un argumentaire dans lequel selon lui le Starship allait être un échec cuisant, j'avais analysé sa critique (https://www.youtube.com/watch?v=qcVcGOqUDe0). À ce moment-là, Starship avait lancé un seul vol. Mes deux arguments concerne les lanceurs réutilisables, et je pense que ces mêmes défenses écrites illustrent que j'ai depuis longtemps une bonne pensée d'échelle et à long terme pour Aerospacelab.
 
@@ -82,16 +45,6 @@ D'autant plus que le Starship brûle du méthane et de l'oxygène. Le méthane e
 Vincent : 38:49 ‘’La question n’est pas et n’a jamais été dans le spatial de lancer plein de trucs en permanence. Cet argument de lancement cadencé à l’extrême n’est pas adapté à la réalité du marché et des besoins. Que lancerait-on toutes les demie-heures […] Pourquoi aurions-nous besoin de lancer 1 million de tonnes en orbite terrestre chaque année ? ’’
 
 Corentin : « Toutes les demie-heures » est poussé à l’extrême, mais admettons un lancement par jour (par comparaison, SpaceX lance en moyenne tous les 4 jours actuellement. Avant l’arrivée de SpaceX, aucune entreprise ne lançait plus de quelques fois par an). Tu pars du principe que le prix plus bas et l’offre plus large du Starship (larges charges utiles vers la Lune par exemple) ne générera pas de demande supplémentaire. En 2023 il est impossible pour moi, toi ou quiconque d’autre de prédire la demande induite ou non par l’existence du Starship.
-## > Proto-projet de simulation du complexe industriel SpaceX-Tesla, Inc.
-Ma fascination pour l'intégration verticale de SpaceX a été telle que lors de l'IPO de SpaceX, j'ai acheté les domaines muskonomic.net et muskonomic.com. Qu'est-ce que muskonomic ? 
-
-Le projet consistait à modéliser tous les liens industriels et chaine de production de chacune des entreprises d'Elon Musk. Exemple : tesla fournit des batteries ensuite réutilisées par le Starship et certaines technologies de Starlink, les chaines de productions de Tesla sont reconverties en Optimus, xAI fournit les LLMs pour ensuite implante dans Optimus, Starlink fournit l'apport financier majeur de SpaceX , le concept de datacenter orbital (Colossus + Starlink) pour permettre à Grok de créer un maximum de compute. (J'ai également créé l'article Wikipédia sur _compute (machine learning)_ tant le concept, popularisé par Sam Altman en 2018, est à mes yeux essentiels. Le compute est la future ressource la plus importante d'une civilisation faisant usage de millions d'agents ou IAs.
-
-J'avais même proposé à un ami en ligne wikipédien du nom de Bryan Illenberg de m'aider sur le projet mais il n'était pas intéressé pour des raisons de désaccords politiques avec Elon Musk. En effet Elon est une figure très controversée surtout aux États-Unis depuis DOGE et Bryan Illenberg est un étudiant démocrate en aérospatial à l'Université de Buffalo. Il a pris l'initiative de créer l'article sur la _Super heavy_ (premier étage du Starship) il y a quelques années et il met à jour les articles Wikipédia concernant l'évolution du développement du Starship sur Wikipédia en anglais.
-
-J'ai été finalement découragé du projet quand j'ai vu qu'une startup aux États-Unis du nom de Mach33 (https:/www.33fg.com) avait déjà vibecodé un projet certes beaucoup plus simple mais qui semble aller dans la même direction. Par nécessité de me concentrer sur mes études, je n'ai pas continué et j'ai dû mettre en pause le projet. 
-On pourrait me reprocher de mentionner dans ma lettre de motivation un projet qui n'a pas quitté mon propre bureau d'études, mais c'est très courant en Europe et à la NASA même avec des financements, alors pour moi qui suit sans ressources, avec 2 mois à tuer et avec des études à côté, c'est excusable.
-Mais j'adorerais pouvoir repenser le projet pour Aerospacelab et modéliser toutes les ramifications de la chaine de production. En fait en m'intéressant à Aerospacelab je vais inévitablement modéliser progressivement la logistique de l'entreprise de mon côté car c'est dans ma nature.
 # > Annexe
 J'ai de nombreux essais concernant l'aérospatial :
 

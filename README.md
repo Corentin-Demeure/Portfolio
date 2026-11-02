@@ -155,3 +155,7 @@ Pour publier, committer les notes importées, les images et `.obsidian-import.js
 ## Articles automatiques
 
 Le carrousel et la grille utilisent la même sélection : toutes les notes Markdown non vides qui correspondent au domaine, et tous les domaines pour « Tout ». Les notes servant de pages de domaine restent des introductions et ne sont pas traitées comme des articles. Ajouter une note avec son titre, son domaine, ses tags et sa miniature suffit ; aucune liste de slugs à maintenir. La sélection est régénérée à chaque build et publication GitHub Pages. Navigation manuelle par flèches, vignettes ou touches directionnelles, sans défilement automatique. featured.json est un ancien fichier de configuration et n'est plus utilisé.
+
+### Rubriques Aerospace
+
+Les essais sont publiés sous `Aerospace/Essais/` et les projets sous `Aerospace/Projets/`. Les contributions Wikipédia et le proto-projet SpaceX–Tesla ont été extraits de « Mon aventure » sans réécriture. Les anciennes adresses redirigent vers les nouvelles.
