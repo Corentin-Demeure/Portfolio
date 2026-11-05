@@ -10,7 +10,10 @@ thumbnail: "images/iss-my-class.png"
 Sommaire:
 	Passion pour l'aérospatial
 	Bachelier en Informatique de Gestion
+	Wikipédien anglophone spécialisé sur SpaceX et Starlink
+	Création de SpaceX Starshield sur Wikipedia et rédaction de Starlink in the Russo-Ukrainian War
 	Archive de débat concernant la faisabilité des lanceurs pleinement réutilisables
+	Proto-projet de simulation du complexe industriel SpaceX-Tesla, Inc.
 	Annexe
 	
 # > Passion pour l'aérospatial
@@ -33,6 +36,14 @@ J'ai longuement hésiter entre l'aérospatial ou la biologie, mais je ressentais
 J'ai choisi l'Henallux plutôt que l'Université de Namur car déjà à ce moment (vers 2021) je trainais dans des communautés de singularitariens qui spéculaient sur le progrès fulgurant à la suite de l'arrivée de l'IA et je ne voyais pas le monde académique comme une trajectoire idéale, je le voyais comme trop théorique et dispersé. Je voulais arriver et directement programmer.
 En 2025 j'ai fait une pause dans mon bachelier en Informatique de Gestion vis-à-vis de mes inquiétudes face à l'intelligence artificielle et car je ne voyais plus où j'allais. J'étais en développement web mais je savais que ça ne correspondait pas à mes compétences. Je vois le développement web comme un excellent outil dans la boite à outils pour être développeur de systèmes, et pour mieux tirer parti de ces outils il faut les appliquer à l'aide de solides compétences propres au domaine d'application.
 Durant cette pause d'un an, je me suis énormément renseigné et j'ai expérimenté avec tout un tas de sujets dont l'agentique, le biomédical, la gestion d'entreprise ; j'ai même tenté de démarrer deux projets entrepreunarial - un en modélisation endocrinologique et un en modélisation de SpaceX-Tesla. J'ai beaucoup appris. Je suis revenu à l'Henallux avec une toute autre perspective.
+# > Wikipédien anglophone spécialisé sur SpaceX et Starlink
+
+[Lire la page du projet](../../Aerospace/Projets/contributions-wikipedia-spacex-starlink/#-wikipédien-anglophone-spécialisé-sur-spacex-et-starlink)
+
+## > Création de SpaceX Starshield sur Wikipedia et rédaction de Starlink in the Russo-Ukrainian War
+
+[Lire la page du projet](../../Aerospace/Projets/contributions-wikipedia-spacex-starlink/#-création-de-spacex-starshield-sur-wikipedia-et-rédaction-de-starlink-in-the-russo-ukrainian-war)
+
 ## > Archive de débat concernant la faisabilité des lanceurs pleinement réutilisables
 En Avril 2023, lorsque Vincent de la Chaine Stardust avait développé un argumentaire dans lequel selon lui le Starship allait être un échec cuisant, j'avais analysé sa critique (https://www.youtube.com/watch?v=qcVcGOqUDe0). À ce moment-là, Starship avait lancé un seul vol. Mes deux arguments concerne les lanceurs réutilisables, et je pense que ces mêmes défenses écrites illustrent que j'ai depuis longtemps une bonne pensée d'échelle et à long terme pour Aerospacelab.
 
@@ -45,6 +56,10 @@ D'autant plus que le Starship brûle du méthane et de l'oxygène. Le méthane e
 Vincent : 38:49 ‘’La question n’est pas et n’a jamais été dans le spatial de lancer plein de trucs en permanence. Cet argument de lancement cadencé à l’extrême n’est pas adapté à la réalité du marché et des besoins. Que lancerait-on toutes les demie-heures […] Pourquoi aurions-nous besoin de lancer 1 million de tonnes en orbite terrestre chaque année ? ’’
 
 Corentin : « Toutes les demie-heures » est poussé à l’extrême, mais admettons un lancement par jour (par comparaison, SpaceX lance en moyenne tous les 4 jours actuellement. Avant l’arrivée de SpaceX, aucune entreprise ne lançait plus de quelques fois par an). Tu pars du principe que le prix plus bas et l’offre plus large du Starship (larges charges utiles vers la Lune par exemple) ne générera pas de demande supplémentaire. En 2023 il est impossible pour moi, toi ou quiconque d’autre de prédire la demande induite ou non par l’existence du Starship.
+## > Proto-projet de simulation du complexe industriel SpaceX-Tesla, Inc.
+
+[Lire la page du projet](../../Aerospace/Projets/modelisation-spacex-tesla/)
+
 # > Annexe
 J'ai de nombreux essais concernant l'aérospatial :
 
