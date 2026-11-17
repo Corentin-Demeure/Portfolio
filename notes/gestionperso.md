@@ -1,5 +1,5 @@
 ---
-title: "GestionPerso — ERP personnel et familial"
+title: "GestionPerso - ERP personnel et familial expérimental"
 domain: "Informatique de Gestion"
 tags: [erp, gestion-personnelle, planification, budget]
 thumbnail: "images/gestionperso/carte-des-objectifs.jpg"
@@ -14,12 +14,17 @@ La manière manière d'illustrer l'intérêt, c'est cette citation que j'ai trou
 
 ![[the-shoe-dealers-discovery]]
 
-
 GestionPerso rassemble la planification, le suivi des activités et la gestion du foyer. Une tâche décrit ce qu’on prévoit de faire. Une action consigne ce qui a été réalisé, avec le temps passé et, le cas échéant, le montant associé.
+
+# Gameification
+
+Un autre principe de cette ERP est de gameifier les tâches que je trouve ennuyeuse ou qu je suis tenter à procrastiner. Nous sommes entourés dans notre vie de produits designés par des boites de marketing pour être aussi addictifs que possibles, or ce même facteur addictif n'est pas présent pour les interfaces des tâches qu'on trouve ennuyeuse.
+
+Je voulais que chaque tâche rapporte un certain nombre d'xp, de points de récompense. L'onglet "Jouer" permet alors de voir sa progression, par quel chemin passé. La réussite de gros projets dépend de la réussite successive des étapes (tâches) pour y accéder. Tandis que l'onglet Construire permet de construire manuellement nos chemins de tâche.
 
 ## Agenda
 
-Le calendrier affiche les tâches et les habitudes par jour, semaine ou mois. Une tâche peut rester sans horaire jusqu’à ce qu’un créneau lui soit attribué. Le menu donne aussi accès aux **Occasions** et aux **Habitudes**, dont on peut régler la récurrence.
+Le calendrier affiche les tâches et les habitudes par jour, semaine ou mois. Une tâche peut rester sans horaire jusqu’à ce qu’un créneau lui soit attribué. On distingue les **Occasions** (événement récurrents sans répétition prévisible, déterminé par l'utilisateur) et aux **Habitudes** (événement récurrent à répétition prévisible), dont on peut régler la récurrence. Les menus permet d'accéder à la liste brut de chacun.
 
 ![Agenda quotidien de démonstration avec six activités planifiées](../../images/gestionperso/agenda.jpg)
 
@@ -37,7 +42,7 @@ Les statistiques rapprochent le temps prévu du temps renseigné sur sept jours.
 
 ## Jouer
 
-Cette vue propose des séances chronométrées pour les campagnes **Stage** et **Spring**. Elle regroupe les tâches du jour, les jalons à confirmer et les notes de fin de séance. Les points suivent l’effort enregistré, tandis que les jalons suivent les résultats.
+Cette vue propose des séances chronométrées pour les campagnes. Elle regroupe les tâches du jour, les jalons à confirmer et les notes de fin de séance. Les points suivent l’effort enregistré, tandis que les jalons suivent les résultats.
 
 ![Vue Jouer avec les créneaux du jour, les campagnes Stage et Spring et les étapes à confirmer](../../images/gestionperso/jouer.jpg)
 
@@ -49,7 +54,7 @@ La carte permet de décomposer un objectif en tâches et de relier celles qui d�
 
 ## Bachelier Dev
 
-Cet espace regroupe les tâches du cursus par branche. Le menu ouvre directement **Intégration professionnelle**, **Spring** et **Aide décisionnelle**.
+Cet espace regroupe les tâches du cursus par branche. Le menu ouvre directement les onglets temporaires **Intégration professionnelle**, et **Aide décisionnelle**, chacune étant des tâches majeures au moment des screenshots de l'ERP.
 
 ![Vue Bachelier Dev et organisation des tâches du cursus](../../images/gestionperso/bachelier.jpg)
 
