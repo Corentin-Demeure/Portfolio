@@ -583,23 +583,37 @@ body .sidebar {
   border: 1px solid #d7eaff80;
 }
 body .feed-tabs {
-  background: rgba(205, 225, 245, .75);
-  border-bottom-color: var(--line);
+  background: linear-gradient(180deg, #f8e8ba, #d7b567 52%, #b98d3d);
+  border-bottom-color: #876127;
 }
 body .feed-tabs a {
-  color: #304d68;
+  color: #38280f;
   text-shadow: none;
 }
 body .feed-tabs a::before {
-  background: #dcebf880;
-  border: 1px solid #8eabc766;
+  background: linear-gradient(#f5dfa9, #d3aa56);
+  border: 1px solid #96702f;
   border-radius: 10px 10px 0 0;
   inset: 0 3px;
   filter: none;
 }
 body .feed-tabs a[aria-current]::before {
-  background: #e7f2ffb3;
+  background: linear-gradient(#fff3d2, #e8c77f);
 }
+body .feed-tabs a:hover { color: #211804; }
+.wiki-transclusion {
+  margin: 1rem 0 2rem;
+  padding: .75rem 1rem;
+  border-left: 3px solid #d7b567;
+  background: #152d4766;
+}
+.wiki-transclusion-excerpt {
+  line-height: 1.65;
+  max-height: 9.9em;
+  overflow: hidden;
+  mask-image: linear-gradient(#000 0%, #000 65%, transparent 100%);
+}
+.prose .wiki-transclusion-excerpt p { margin: 0; line-height: inherit; font-size: inherit; }
 body .article-layout {
   grid-template-columns: minmax(0, 1fr);
 }

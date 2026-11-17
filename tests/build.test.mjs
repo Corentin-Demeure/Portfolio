@@ -5,6 +5,16 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { build, output } from '../build.mjs';
 
+test('GestionPerso transcludes the linked article from its Markdown source', () => {
+  build();
+  const page = fs.readFileSync(path.join(output, 'notes/gestionperso/index.html'), 'utf8');
+  const article = fs.readFileSync(path.join(output, 'notes/the-shoe-dealers-discovery/index.html'), 'utf8');
+  assert.match(page, /href="..\/..\/notes\/the-shoe-dealers-discovery\/index.html"/);
+  assert.match(page, /class="wiki-transclusion-excerpt"><p>The shoe dealer's discovery/);
+  assert.ok(!page.includes('![[the-shoe-dealers-discovery]]'));
+  assert.match(article, /monthly_accounts/);
+});
+
 test('Markdown notes produce working pages, navigation, images and search', () => {
   const notes = build();
   assert.ok(notes.length >= 6);

@@ -49,6 +49,14 @@ export function build() {
     return {...data, slug, html, text: data.title+' '+data.domain+' '+plain(html), url: noteUrl(slug, data.domain)};
   });
   if (!notes.length) throw new Error('No Markdown notes found.');
+  const excerpts = new Map(notes.map(note => [note.slug, plain(note.html)]));
+  for (const note of notes) {
+    note.html = note.html.replace(/<p>!\[\[([a-z0-9-]+)\]\]<\/p>/g, (_, slug) => {
+      const target = notes.find(item => item.slug === slug);
+      if (!target || target.slug === note.slug) throw new Error(`Invalid transclusion ${slug} in ${note.slug}`);
+      return `<aside class="wiki-transclusion" aria-label="Extrait de ${escape(target.title)}"><div class="wiki-transclusion-excerpt"><p>${escape(excerpts.get(slug))}</p></div></aside>`;
+    });
+  }
   const layout = fs.readFileSync(path.join(root, 'templates/note.html'), 'utf8');
   // Only clear this build's fixed output directory, contained in the project.
   if (path.dirname(output) !== root || path.basename(output) !== 'dist') throw new Error('Invalid output path');

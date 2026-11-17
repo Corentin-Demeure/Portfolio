@@ -41,6 +41,8 @@ Un paragraphe avec du **gras**, de l’*italique* et un [lien](https://example.c
 
 Le titre principal est généré depuis `title`. Les images restent dans `images/` ; leurs chemins sont relatifs à la page publiée, comme dans l’exemple. Un lien vers une autre source, `[Satellites](satellites.md)`, est automatiquement converti en lien HTML. `related` contient les noms de notes sans `.md`, pour les liens associés dans la colonne de droite.
 
+Dans `notes/gestionperso.md`, le lien vers `the-shoe-dealers-discovery.md` ouvre l’article dédié. La ligne `![[the-shoe-dealers-discovery]]` affiche automatiquement son début avec un fondu sur six lignes. Modifier `notes/the-shoe-dealers-discovery.md` actualise aussi cet aperçu au prochain build. Les captures de démonstration se trouvent dans `images/gestionperso/`.
+
 ## Ajouter une note
 
 Créer `notes/mon-sujet.md` avec les métadonnées ci-dessus. Les domaines disponibles sont `Aerospace`, `Biomédical`, `Agronomie`, `Biologie spéculative`, `Projets techniques`, `Urbanisme & durabilité` et `Transversal`. La note est automatiquement publiée et ajoutée à la recherche. Pour l’ajouter aux cartes d’accueil et au menu, modifier aussi `index.html` et `templates/note.html`.
