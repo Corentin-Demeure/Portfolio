@@ -5,28 +5,66 @@ tags: [erp, gestion-personnelle, planification, budget]
 thumbnail: "images/gestionperso/carte-des-objectifs.png"
 ---
 
-GestionPerso réunit dans une même application l’agenda, les objectifs, le journal d’activités, les finances et l’inventaire du foyer. Il permet de préparer une semaine, de consigner ce qui a été fait et de retrouver les informations qui y sont liées.
+GestionPerso rassemble la planification, le suivi des activités et la gestion du foyer. Une tâche décrit ce qu’on prévoit de faire. Une action consigne ce qui a été réalisé, avec le temps passé et, le cas échéant, le montant associé.
 
-## Planifier les tâches et les objectifs
+## Agenda
 
-L’agenda affiche les tâches et les habitudes par jour, semaine ou mois. Une tâche peut rester sans horaire jusqu’au moment où l’on décide de lui réserver un créneau.
+Le calendrier affiche les tâches et les habitudes par jour, semaine ou mois. Une tâche peut rester sans horaire jusqu’à ce qu’un créneau lui soit attribué. Le menu donne aussi accès aux **Occasions** et aux **Habitudes**, dont on peut régler la récurrence.
 
-![Agenda hebdomadaire avec un créneau planifié](../../images/gestionperso/agenda.png)
+![Agenda quotidien avec un créneau consacré au projet Spring et les onze onglets de navigation](../../images/gestionperso/agenda.png)
 
-La vue **Construire** permet de décomposer un objectif en étapes et de visualiser leurs dépendances. Pour une recherche de stage, par exemple, la carte peut relier la préparation du CV, les candidatures et la préparation d’un entretien.
+## Journal
+
+Le journal affiche le prévu et le réalisé côte à côte. Chaque action peut renseigner une durée, un résultat et une prochaine étape. Plusieurs séances peuvent faire avancer la même tâche, dont l’achèvement se confirme séparément.
+
+![Journal d’activités avec ses colonnes Prévu et Réalisé et la liste des actions du jour](../../images/gestionperso/journal.png)
+
+## Statistiques
+
+Les statistiques rapprochent le temps prévu du temps renseigné sur sept jours. Elles présentent la répartition des activités, les tâches achevées ou partiellement avancées et les coûts associés. Le temps sans saisie apparaît comme non renseigné.
+
+## Jouer
+
+Cette vue propose des séances chronométrées pour les campagnes **Stage** et **Spring**. Elle regroupe les tâches du jour, les jalons à confirmer et les notes de fin de séance. Les points suivent l’effort enregistré, tandis que les jalons suivent les résultats.
+
+![Vue Jouer avec les créneaux du jour, les campagnes Stage et Spring et les étapes à confirmer](../../images/gestionperso/jouer.png)
+
+## Construire
+
+La carte permet de décomposer un objectif en tâches et de relier celles qui dépendent les unes des autres. Pour une recherche de stage, elle peut par exemple relier la préparation du CV, les candidatures et la préparation d’un entretien.
 
 ![Carte des objectifs et des dépendances entre tâches](../../images/gestionperso/carte-des-objectifs.png)
 
-## Suivre ce qui a été réalisé
+## Bachelier Dev
 
-Le journal permet de renseigner une activité, sa durée, son résultat et, si nécessaire, la prochaine étape ou une dépense. Plusieurs séances peuvent faire avancer une même tâche, dont l’achèvement est indiqué séparément. Les statistiques rapprochent le temps prévu dans l’agenda du temps renseigné dans le journal.
+Cet espace regroupe les tâches du cursus par branche. Le menu ouvre directement **Intégration professionnelle**, **Spring** et **Aide décisionnelle**.
 
-## Suivre les dépenses et les biens du foyer
+## Permis
 
-Le budget regroupe par compte les recettes et dépenses associées aux activités. Une vue des flux permet de suivre les montants renseignés, de leur provenance à leur usage. Le rapprochement avec le registre des opérations bancaires reste manuel.
+L’onglet **Permis** est présent dans la navigation des comptes habilités. Son écran est encore vide dans la version présentée.
 
-L’inventaire rassemble les biens par personne. Chaque fiche peut préciser la catégorie, l’emplacement, l’état et la valeur déclarée du bien. Un objet peut être associé à une tâche ou à une activité.
+## Finances
+
+Le **Budget** regroupe par compte les recettes et dépenses liées aux actions. La vue **Flux d’argent** relie les montants saisis à leur provenance, au compte, à l’usage et à l’action correspondante. Le menu donne aussi accès aux **Comptes bancaires**, aux **Transactions** et aux **Abonnements**. Le rapprochement avec le registre des opérations bancaires reste manuel.
+
+![Carte des flux reliant une dépense de courses à un compte et à une catégorie](../../images/gestionperso/flux-argent.png)
+
+## Comptes
+
+Cet onglet rassemble les fiches de comptes d’accès à des services. Les comptes bancaires se consultent dans le menu Finances.
+
+## Contacts
+
+Le répertoire permet de créer, de retrouver et de trier les fiches de contacts.
+
+## Inventaire
+
+L’inventaire rassemble les biens par personne. Chaque fiche peut préciser la catégorie, l’emplacement, l’état et la valeur déclarée du bien. Un objet peut être associé à une tâche ou à une action.
 
 ![Inventaire de démonstration avec un ordinateur rattaché à une fiche de test](../../images/gestionperso/inventaire.png)
+
+## Personnes
+
+Le menu donne accès aux fiches des **Personnes du foyer** et à leurs **Routines**. La vue Routines reprend sur sept jours les tâches et les habitudes de la personne sélectionnée, à partir des mêmes données que l’agenda.
 
 *Captures issues de prévisualisations de l’application.*
