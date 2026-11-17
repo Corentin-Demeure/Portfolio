@@ -1,14 +1,14 @@
 ---
-title: "Backoffice React d'une application de localisation de brocantes (travail de groupe)"
+title: "Backoffice React d'une application de localisation de brocantes"
 domain: "Informatique de Gestion"
-tags: [react, javascript, nodejs, postgresql, backoffice, travail-de-groupe]
+tags: [react, javascript, nodejs, postgresql, backoffice]
 thumbnail: "images/appbrocante/02-brocantes.jpg"
 thumbnailAlt: "Tableau d’administration des brocantes dans AppBrocante"
 ---
 
-AppBrocante est un projet de groupe consacré à la découverte et à la localisation de brocantes. Le projet comprend une application mobile, une API et une interface web d’administration. Cet article présente le **backoffice développé avec React**, qui permet d’entretenir les données utilisées par l’application et de gérer ses utilisateurs.
+AppBrocante est une application consacrée à la découverte et à la localisation de brocantes. Le projet comprend une application mobile, une API et une interface web d’administration. J’ai entièrement développé seul le **backoffice avec React**, qui permet d’entretenir les données utilisées par l’application et de gérer ses utilisateurs. Le backend a été réalisé en partie avec un autre membre du groupe.
 
-Le backoffice rassemble les brocantes, les brocanteurs, les articles proposés à la vente, les emplacements et les marques d’intérêt des participants. Il donne aux administrateurs une vue structurée des informations et des relations entre ces différents éléments. Le projet a été réalisé en groupe par Demeure, Dujardin et Verhaegen.
+Le backoffice rassemble les brocantes, les brocanteurs, les articles proposés à la vente, les emplacements et les marques d’intérêt des participants. Il donne aux administrateurs une vue structurée des informations et des relations entre ces différents éléments.
 
 Les captures ci-dessous proviennent de l’application exécutée localement avec son jeu de données de démonstration. Les adresses e-mail et les numéros de téléphone des comptes ont été remplacés par des valeurs fictives pour cette présentation.
 
@@ -108,8 +108,8 @@ Le modèle relationnel relie les personnes, leurs profils de brocanteur, leurs a
 
 ## Cadre du projet
 
-Ce travail de groupe illustre la construction d’une interface d’administration reliée à une API et à une base relationnelle. Il associe la gestion des données métier, les rôles utilisateurs, la navigation entre rubriques, l’internationalisation et une première visualisation statistique.
+Ce backoffice, que j’ai développé intégralement, illustre la construction d’une interface d’administration reliée à une API et à une base relationnelle. Il associe la gestion des données métier, les rôles utilisateurs, la navigation entre rubriques, l’internationalisation et une première visualisation statistique.
 
 Il s’agit d’un prototype pédagogique. Certains formulaires exposent encore les noms techniques des champs et la session de l’interface doit être rouverte après un rechargement complet de la page. Les captures présentent la version existante du projet, sans refonte de son interface.
 
-Le code du projet est disponible dans le [dépôt AppBrocante](https://github.com/etu51424/appBrocante).
+Le code du projet est disponible dans le dépôt AppBrocante : [https://github.com/etu51424/appBrocante](https://github.com/etu51424/appBrocante).

@@ -178,6 +178,13 @@ test('new Markdown articles automatically enter every matching feed and carousel
   const computing=fs.readFileSync(path.join(output,'Informatique-de-gestion/index.html'),'utf8');
   assert.match(computing, /aria-label="Afficher : Migration de Biodimestica/);
   assert.match(computing, /aria-label="Lire : Migration de Biodimestica/);
+  for (const pattern of [/class="card-info"><h2><a href="([^"]+)"/g, /class="featured-picture" href="([^"]+)"/g]) {
+   const urls = Array.from(computing.matchAll(pattern), match => match[1]);
+   assert.match(urls[0], /migration-biodimestica/);
+   assert.match(urls[1], /gestionperso/);
+   assert.match(urls.at(-1), /backoffice-react-appbrocante/);
+   assert.ok(urls.findIndex(url => url.includes('auto-computing')) > 1);
+  }
  } finally {
   for (const [slug] of fixtures) fs.unlinkSync(new URL('../notes/'+slug+'.md', import.meta.url));
   build();
