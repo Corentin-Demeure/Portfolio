@@ -900,7 +900,7 @@ body .sidebar .search-portrait #search::placeholder { color:#687783; }
 .cv-dropdown { position:relative; margin:0; }
 .cv-dropdown summary { cursor:pointer; list-style:none; padding:5px 8px; border:1px solid #d7eaff80; border-radius:4px; }
 .cv-dropdown summary::-webkit-details-marker { display:none; }
-.cv-dropdown[open] > a {
+.cv-dropdown[open] > .cv-dropdown-menu {
   position:absolute;
   z-index:10;
   top:calc(100% + 6px);
@@ -915,6 +915,8 @@ body .sidebar .search-portrait #search::placeholder { color:#687783; }
   box-shadow:0 8px 20px #0006;
   font-size:13px;
 }
+.cv-dropdown-menu > a { display:block; color:inherit; }
+.cv-dropdown-menu > a + a { margin-top:10px; }
 .right-rail .recommendations {
   position:static;
   width:100%;
