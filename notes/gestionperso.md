@@ -22,9 +22,11 @@ Un autre principe de cette ERP est de gameifier les tâches que je trouve ennuye
 
 Je voulais que chaque tâche rapporte un certain nombre d'xp, de points de récompense. L'onglet "Jouer" permet alors de voir sa progression, par quel chemin passé. La réussite de gros projets dépend de la réussite successive des étapes (tâches) pour y accéder. Tandis que l'onglet Construire permet de construire manuellement nos chemins de tâche.
 
-## Agenda
+## Agenda et tâches
 
-Le calendrier affiche les tâches et les habitudes par jour, semaine ou mois. Une tâche peut rester sans horaire jusqu’à ce qu’un créneau lui soit attribué. On distingue les **Occasions** (événement récurrents sans répétition prévisible, déterminé par l'utilisateur) et aux **Habitudes** (événement récurrent à répétition prévisible), dont on peut régler la récurrence. Les menus permet d'accéder à la liste brut de chacun.
+Le calendrier affiche les tâches et les habitudes par jour, semaine ou mois. Une tâche peut rester sans horaire jusqu’à ce qu’un créneau lui soit attribué. On distingue trois types de tâches : les **tâches uniques** (sans implémentation spécifique), les **occasions** (événement récurrents sans répétition prévisible, déterminé par l'utilisateur) et aux **habitudes** (événement récurrent à répétition prévisible), dont on peut régler la récurrence. Les menus permet d'accéder à la liste brut de chacun.
+
+À la base j'avais une distinction entre projet et tâche mais j'ai préféré fusionné les deux, un projet étant une tâche sans parent majeur. 
 
 ![Agenda quotidien de démonstration avec six activités planifiées](../../images/gestionperso/agenda.jpg)
 
@@ -54,7 +56,7 @@ La carte permet de décomposer un objectif en tâches et de relier celles qui d�
 
 ## Bachelier Dev
 
-Cet espace regroupe les tâches du cursus par branche. Le menu ouvre directement les onglets temporaires **Intégration professionnelle**, et **Aide décisionnelle**, chacune étant des tâches majeures au moment des screenshots de l'ERP.
+Onglet temporaire/spécifique à moi et espace regroupant les tâches du cursus par branche. Le menu ouvre directement les onglets temporaires **Intégration professionnelle**, et **Aide décisionnelle**, chacune étant des tâches majeures au moment des screenshots de l'ERP.
 
 ![Vue Bachelier Dev et organisation des tâches du cursus](../../images/gestionperso/bachelier.jpg)
 
