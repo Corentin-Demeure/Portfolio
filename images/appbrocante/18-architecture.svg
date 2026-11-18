@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="720" viewBox="0 0 1120 720" role="img" aria-labelledby="title desc">
+ <title id="title">Architecture d’AppBrocante : deux interfaces, une API et une base commune</title>
+ <desc id="desc">Le mobile React Native utilise les parcours Client et Brocanteur. Le backoffice React utilise les parcours Administrateur. Express vérifie les jetons, les droits et les données avant les contrôleurs et les modèles PostgreSQL.</desc>
+ <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#8a6520"/></marker></defs>
+ <rect width="1120" height="720" rx="18" fill="#fff9e6"/>
+ <g font-family="Arial,sans-serif" fill="#3f2100">
+  <text x="48" y="55" font-size="29" font-weight="700">AppBrocante — circulation des données</text>
+  <text x="48" y="87" font-size="17">Schéma établi à partir des routes et des couches du projet</text>
+  <g stroke="#b0883b" stroke-width="2">
+   <rect x="48" y="125" width="470" height="95" rx="12" fill="#f3d47d"/>
+   <rect x="602" y="125" width="470" height="95" rx="12" fill="#ffd175"/>
+   <rect x="48" y="290" width="305" height="100" rx="12" fill="#fff"/>
+   <rect x="408" y="290" width="305" height="100" rx="12" fill="#fff"/>
+   <rect x="767" y="290" width="305" height="100" rx="12" fill="#fff"/>
+   <rect x="48" y="435" width="1024" height="90" rx="12" fill="#f4e6b7"/>
+   <rect x="48" y="565" width="1024" height="100" rx="12" fill="#e0ecdc" stroke="#68845a"/>
+  </g>
+  <g text-anchor="middle">
+   <text x="283" y="161" font-size="24" font-weight="700">Application mobile React Native</text>
+   <text x="283" y="191" font-size="17">Profil · recherche · activité du brocanteur</text>
+   <text x="837" y="161" font-size="24" font-weight="700">Backoffice React</text>
+   <text x="837" y="191" font-size="17">Tableaux · formulaires · modération</text>
+   <text x="200" y="323" font-size="22" font-weight="700">/api/v1/client</text>
+   <text x="200" y="351" font-size="16">Compte personnel et consultation</text>
+   <text x="200" y="375" font-size="16">Identité imposée par « himself »</text>
+   <text x="560" y="323" font-size="22" font-weight="700">/api/v1/dealer</text>
+   <text x="560" y="351" font-size="16">Activité du brocanteur</text>
+   <text x="560" y="375" font-size="16">Propriété contrôlée sur les articles</text>
+   <text x="919" y="323" font-size="22" font-weight="700">/api/v1/admin</text>
+   <text x="919" y="351" font-size="16">Administration globale</text>
+   <text x="919" y="375" font-size="16">Rôle administrateur requis</text>
+   <text x="560" y="468" font-size="23" font-weight="700">Express → middlewares → contrôleurs → modèles</text>
+   <text x="560" y="499" font-size="17">JWT · autorisations propres à chaque route · validation VineJS · requêtes SQL paramétrées</text>
+   <text x="560" y="603" font-size="24" font-weight="700">PostgreSQL — données partagées</text>
+   <text x="560" y="635" font-size="18">person · dealer · article · flea_market · slot · interest</text>
+  </g>
+  <g fill="none" stroke="#8a6520" stroke-width="3" marker-end="url(#arrow)">
+   <path d="M200 220V280"/><path d="M370 220V252H560V280"/><path d="M919 220V280"/>
+   <path d="M200 390V425"/><path d="M560 390V425"/><path d="M919 390V425"/>
+   <path d="M560 525V555"/>
+  </g>
+  <text x="48" y="698" font-size="14" fill="#6b4e18">Les interfaces rechargent les données par HTTP ; les droits sont contrôlés par l’API.</text>
+ </g>
+</svg>
