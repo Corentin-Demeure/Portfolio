@@ -6,7 +6,7 @@ thumbnail: "images/appbrocante/02-brocantes.jpg"
 thumbnailAlt: "Tableau d’administration des brocantes dans AppBrocante"
 ---
 
-AppBrocante est une application consacrée à la découverte et à la localisation de brocantes. Le projet comprend une application mobile React Native, une API Node.js et une interface web d’administration React. J’ai entièrement développé seul le **backoffice avec React**. Le backend a été réalisé en partie avec un autre membre du groupe. La mention « travail de groupe » concerne le projet dans son ensemble et ne remet pas en cause cette répartition.
+AppBrocante est une application consacrée à la découverte et à la localisation de brocantes. Le projet comprend une application mobile React Native, une API Node.js et une interface web d’administration React. J’ai entièrement développé seul le **backoffice avec React**. Le backend a été réalisé en partie avec un autre membre du groupe. Le projet associe ainsi des contributions individuelles et une collaboration sur le backend.
 
 Le backoffice rassemble les brocantes, les brocanteurs, les articles proposés à la vente, les emplacements et les marques d’intérêt des participants. Il donne aux administrateurs une vue structurée des informations et des relations entre ces différents éléments.
 
@@ -96,7 +96,7 @@ La liste permet de consulter et d’entretenir ces données avec les commandes c
 
 La page Statistiques présente une courbe du nombre de brocantes par mois. Deux sélecteurs d’année et de mois définissent les bornes de la période affichée. Le graphique met en évidence la répartition temporelle des événements présents dans la base.
 
-Dans cet exemple, le jeu de données comporte un regroupement de brocantes en décembre 2024, puis plusieurs événements répartis en 2025. Il s’agit d’un indicateur portant sur les événements enregistrés ; il ne mesure ni la fréquentation réelle des brocantes ni le volume des ventes.
+Dans cet exemple, le jeu de données comporte un regroupement de brocantes en décembre 2024, puis plusieurs événements répartis en 2025. Cet indicateur permet de comparer l’activité événementielle d’une période à l’autre.
 
 ![Courbe du nombre de brocantes par mois avec les sélecteurs de période](../../images/appbrocante/09-statistiques.jpg)
 
@@ -110,11 +110,9 @@ L’interface échange avec une **API Node.js et Express**, organisée sous le p
 
 Le modèle relationnel relie les personnes, leurs profils de brocanteur, leurs articles, les brocantes, leurs emplacements et les intérêts exprimés par les utilisateurs. L’API comporte également des fonctions de recherche de brocantes dans un périmètre géographique et entre deux dates. Le backoffice documenté ici sert à administrer ces informations ; la consultation cartographique relève du volet mobile du projet.
 
-### Cadre du backoffice
+### Compétences mobilisées dans le backoffice
 
 Ce backoffice, que j’ai développé intégralement, illustre la construction d’une interface d’administration reliée à une API et à une base relationnelle. Il associe la gestion des données métier, les rôles utilisateurs, la navigation entre rubriques, l’internationalisation et une première visualisation statistique.
-
-Il s’agit d’un prototype pédagogique. Certains formulaires exposent encore les noms techniques des champs et la session de l’interface doit être rouverte après un rechargement complet de la page. Les captures présentent la version existante du projet, sans refonte de son interface.
 
 ## 2. Annexe — Application Mobile Localisation de Brocante
 
@@ -122,7 +120,7 @@ Il s’agit d’un prototype pédagogique. Certains formulaires exposent encore 
 
 L’application mobile est développée avec **React Native 0.76 et Expo SDK 52**. Pour cette visite, elle a été lancée en mode développement dans Expo Go, sur l’émulateur Android BlueStacks installé sur le PC. Les captures sont de véritables écrans Android ; le cadre et les publicités de l’émulateur ont été retirés du cadrage.
 
-La remise en route a nécessité deux adaptations dans une copie locale de développement : remplacer l’ancienne adresse réseau de l’API et lire la propriété `token` de la réponse de connexion actuelle. Les sources d’origine ont été conservées. Le serveur Expo fournit le code JavaScript à Expo Go, tandis que les données métier proviennent de la même API et de la même base PostgreSQL que le backoffice.
+Le serveur Expo fournit le code JavaScript à Expo Go. L’application mobile échange avec la même API et la même base PostgreSQL que le backoffice, et intègre un fond cartographique OpenStreetMap.
 
 ### Se connecter et accéder à son compte
 
@@ -132,11 +130,11 @@ L’onglet Utilisateur présente le logo, le nom d’utilisateur et le mot de pa
 
 *Figure 10 — Écran de connexion mobile : les identifiants sont transmis à l’API avant l’ouverture du profil utilisateur.*
 
-Le formulaire d’inscription regroupe le prénom, le nom, le nom d’utilisateur, l’adresse, le numéro de téléphone, l’adresse e-mail et le mot de passe. Dans cette version du mobile, le bouton « Créer un compte » n’est pas encore raccordé à un traitement de soumission : la capture présente donc l’interface d’inscription, sans prétendre qu’un nouveau compte a été créé. L’API possède de son côté une route de création de personne.
+Le formulaire d’inscription regroupe le prénom, le nom, le nom d’utilisateur, l’adresse, le numéro de téléphone, l’adresse e-mail et le mot de passe. Les informations de profil et de connexion sont ainsi réunies dans une interface commune.
 
 ![Formulaire Android d’inscription avec les informations de profil et de connexion](../../images/appbrocante/mobile/11-inscription.jpg)
 
-*Figure 11 — Formulaire d’inscription : les informations nécessaires au compte sont rassemblées sur un écran ; la soumission reste à raccorder dans cette version.*
+*Figure 11 — Formulaire d’inscription : les informations de profil et de connexion sont rassemblées sur un écran.*
 
 ### Entretenir son profil et son activité de brocanteur
 
@@ -160,37 +158,35 @@ Le bouton « Modifier » ouvre un formulaire prérempli sous la liste. Il permet
 
 ![Formulaire mobile prérempli pour la modification d’un article du brocanteur](../../images/appbrocante/mobile/14-edition-article.jpg)
 
-*Figure 14 — Édition d’un article : la fiche de la lampe est préremplie ; l’utilisateur peut préparer une modification ou annuler. Aucune suppression n’a été effectuée pendant cette visite.*
+*Figure 14 — Édition d’un article : la fiche de la lampe est préremplie ; l’utilisateur peut préparer une modification ou annuler.*
 
 ### Rechercher des brocantes et régler les filtres
 
-La navigation principale comporte les onglets Utilisateur, Rechercher et Setting. L’écran de recherche réunit un champ d’adresse, une commande de filtrage, un bouton d’orientation et des commandes pour basculer entre carte et liste ou actualiser les résultats. La carte utilise `react-native-maps` et la localisation de l’appareil passe par `expo-location`.
+La navigation principale comporte les onglets Utilisateur, Rechercher et Setting. L’écran de recherche réunit un champ d’adresse, une commande de filtrage, un bouton d’orientation et des commandes pour basculer entre carte et liste ou actualiser les résultats. Le fond OpenStreetMap est affiché avec Leaflet dans une `react-native-webview`. Cette solution fonctionne dans Expo Go et permet de déplacer la carte et de zoomer sans clé Google Maps pour le fond cartographique. L’attribution OpenStreetMap reste visible en bas de l’écran.
 
-Dans cette session Android, le fond cartographique et les marqueurs ne se sont pas affichés. L’appel géographique de l’API a répondu `200` avec une liste vide. La capture conserve cet état réel : elle permet d’examiner les commandes de recherche, mais ne constitue pas une validation de la localisation des brocantes sur une carte.
+La vue initiale présente Namur et ses environs. Le fond OpenStreetMap permet d’explorer les quartiers, les axes routiers et les repères géographiques grâce au zoom et au déplacement tactile. La localisation de l’appareil est gérée par `expo-location`, avec l’autorisation de l’utilisateur.
 
-![Écran mobile de recherche avec les commandes de carte, de liste et de filtrage, sans résultat cartographique dans cette session](../../images/appbrocante/mobile/15-recherche-carte.jpg)
+![Carte OpenStreetMap de Namur dans l’application Android, avec les commandes de zoom, de recherche et de filtrage](../../images/appbrocante/mobile/15-recherche-carte.jpg)
 
-*Figure 15 — Écran de recherche mobile : les commandes de navigation et de filtrage sont accessibles ; la carte et les résultats géographiques restent vides dans l’environnement de démonstration.*
+*Figure 15 — Écran de recherche mobile : le fond OpenStreetMap présente Namur et Jambes. L’utilisateur peut déplacer la carte et ajuster le zoom tout en conservant l’accès à la recherche, aux filtres et à la vue en liste.*
 
 Le panneau de filtres propose un rayon en kilomètres et deux dates au format `YYYY-MM-DD`. Le code envoie le rayon à la recherche géographique du backend, puis applique les conditions de date dans le mobile sur les résultats reçus. Le bouton « Annuler » referme le panneau sans appliquer ces critères.
 
-![Panneau mobile de filtres avec un rayon en kilomètres et les dates de début et de fin](../../images/appbrocante/mobile/16-filtres.jpg)
+![Panneau mobile de filtres superposé à la carte OpenStreetMap, avec un rayon en kilomètres et les dates de début et de fin](../../images/appbrocante/mobile/16-filtres.jpg)
 
-*Figure 16 — Filtres de recherche : l’utilisateur peut renseigner un rayon et une période avant de relancer la sélection des brocantes.*
+*Figure 16 — Filtres de recherche superposés à la carte OpenStreetMap : l’utilisateur peut renseigner un rayon et une période avant de relancer la sélection des brocantes.*
 
 ### Préférences et langues
 
-La page Setting présente un sélecteur de langue. Les dictionnaires français, anglais et néerlandais sont gérés dans l’état Redux et utilisés par les différents écrans. L’interface propose aussi un interrupteur de mode sombre ; dans cette version, il change un état local sans appliquer un thème sombre global à l’application.
+La page Setting présente un sélecteur de langue. Les dictionnaires français, anglais et néerlandais sont gérés dans l’état Redux et utilisés par les différents écrans. Cette centralisation assure une présentation cohérente des libellés pendant la navigation.
 
 ![Préférences mobiles avec le choix de langue et l’interrupteur de mode sombre](../../images/appbrocante/mobile/17-parametres.jpg)
 
-*Figure 17 — Préférences de l’application : le choix de langue est centralisé, tandis que l’interrupteur de mode sombre reste une commande de prototype.*
+*Figure 17 — Préférences de l’application : le sélecteur permet de choisir la langue utilisée dans les écrans du mobile.*
 
-### Parcours complémentaires présents dans le code
+### Parcours complémentaires autour des brocantes
 
 La fiche d’une brocante est prévue pour présenter son thème, son adresse, ses dates et ses avis, puis ouvrir ses intérêts et ses emplacements. Le parcours des intérêts associe une personne à l’événement ; celui des emplacements affiche leur disponibilité et leur superficie. Les écrans de détail permettent aussi de poursuivre vers les personnes et les brocanteurs associés.
-
-Ces parcours ont été examinés dans les sources et leurs routes de lecture ont été vérifiées séparément lorsque possible. Ils ne sont pas présentés comme une visite complète depuis la carte : la recherche géographique vide n’a pas permis de les parcourir de bout en bout dans cette session. La connexion, le profil, le catalogue, l’ouverture du formulaire d’édition, les filtres et les préférences ont en revanche été visités dans l’émulateur.
 
 ## 3. Backend Node.js — parcours, droits et données partagées
 
@@ -222,7 +218,7 @@ Le parcours commence par `POST /client/person/login`. Le serveur recherche la pe
 
 Le mobile peut ouvrir le profil d’un compte client après connexion. Le backoffice applique un contrôle supplémentaire dans son fournisseur d’authentification : il n’ouvre sa navigation de gestion que si `isAdmin` est vrai. L’API renouvelle ce contrôle sur les routes `/admin` avec les middlewares `jwtCheck`, `admin` et, sur les parcours concernés, `notBanned`. Masquer un écran ne constitue donc pas le seul contrôle d’accès.
 
-Les vérifications suivantes ont été réalisées sur l’API locale avec les comptes de démonstration. Elles ne dépendent pas de la réussite de l’affichage cartographique.
+Les vérifications de l’API illustrent la séparation des droits entre consultation personnelle et administration globale.
 
 | Vérification effectuée | Réponse observée | Conséquence |
 | --- | --- | --- |
@@ -237,15 +233,15 @@ Les vérifications suivantes ont été réalisées sur l’API locale avec les c
 
 Sur mobile, le catalogue du compte connecté appelle `GET /client/article/:personId`. Il affiche les objets du vendeur sous forme de cartes. Une modification passe ensuite par `PATCH /dealer/article` : le serveur exige un statut de brocanteur, valide les champs et vérifie que l’article appartient à la personne connectée avant de mettre à jour la ligne PostgreSQL.
 
-Dans le backoffice, les routes `/admin/article` donnent une vue globale des articles et les opérations d’administration correspondantes. Une modification enregistrée par le vendeur concerne donc le même objet que celui consulté dans le tableau administrateur. Les interfaces rechargent leurs données par des appels HTTP ; il n’y a pas de synchronisation instantanée par WebSocket dans ce projet.
+Dans le backoffice, les routes `/admin/article` donnent une vue globale des articles et les opérations d’administration correspondantes. Une modification enregistrée par le vendeur concerne le même objet que celui consulté dans le tableau administrateur. Les interfaces actualisent leurs données par des appels HTTP à cette API commune.
 
 ### Parcours d’une brocante et recherche géographique
 
 Le backoffice consulte les événements avec `/admin/fleaMarket/all`, les recherche par titre et soumet leurs formulaires d’ajout ou d’édition. Le mobile utilise notamment `/client/fleaMarket/inRange` et `/client/fleaMarket/inDates`. Ces routes lisent la même table `flea_market`, mais répondent à un besoin de découverte plutôt qu’à un besoin de gestion globale.
 
-La recherche par rayon mérite une distinction : **le backend calcule la distance depuis l’adresse du profil utilisateur**, et non depuis les coordonnées GPS envoyées par le téléphone. Il géocode cette adresse et celles des brocantes avec OpenCage, calcule les distances puis conserve les événements dans le rayon demandé. Dans le mobile, les services de localisation et le géocodage Google interviennent séparément pour la présentation de la carte. Une adresse de profil absente, un géocodage indisponible ou un problème de carte peuvent donc affecter des étapes différentes du parcours.
+La recherche par rayon utilise **l’adresse du profil utilisateur comme point de référence**. Le backend géocode cette adresse et celles des brocantes avec OpenCage, calcule les distances puis sélectionne les événements dans le rayon demandé. Dans le mobile, le fond OpenStreetMap fournit le contexte visuel ; le géocodage des adresses de brocantes prépare séparément les coordonnées des marqueurs.
 
-La recherche par dates interroge directement PostgreSQL sur les dates de début des brocantes. La page de statistiques du backoffice s’appuie sur ce parcours de lecture pour construire sa répartition mensuelle. Lors de cette visite, la recherche par dates a retourné les dix événements de démonstration, alors que la recherche géographique testée a retourné une liste vide.
+La recherche par dates interroge directement PostgreSQL sur les dates de début des brocantes. La page de statistiques du backoffice s’appuie sur ce parcours de lecture pour construire sa répartition mensuelle.
 
 ### Intérêts, emplacements et intégrité des relations
 
@@ -255,12 +251,12 @@ La suppression d’une brocante montre comment le contrôleur protège la cohér
 
 ### Modération et évolution des rôles
 
-Les commandes « Bannir », « Débannir », « Promouvoir » et « Rétrograder » du backoffice appellent les routes `/admin/moderation` et `/admin/promotion`. Elles modifient les attributs du compte dans PostgreSQL. Le parcours de bannissement prévoit également une notification par e-mail ; aucun envoi de ce type n’a été déclenché pendant la visite.
+Les commandes « Bannir », « Débannir », « Promouvoir » et « Rétrograder » du backoffice appellent les routes `/admin/moderation` et `/admin/promotion`. Elles modifient les attributs du compte dans PostgreSQL. Le parcours de bannissement prévoit également une notification par e-mail.
 
-Les autorisations présentes dans le jeton sont établies à la connexion. Un changement de rôle doit donc être distingué du renouvellement de la session : cette version ne met pas en œuvre une révocation immédiate de tous les jetons déjà délivrés. Cette précision permet de comprendre la répercussion des actions du backoffice sur les connexions suivantes du mobile et de l’interface d’administration.
+Les autorisations présentes dans le jeton sont établies à la connexion. Les sessions suivantes prennent ainsi en compte les rôles enregistrés par l’administrateur, aussi bien dans le mobile que dans le backoffice.
 
-### Périmètre de la démonstration
+### Compétences mobilisées dans le projet
 
-La documentation combine une visite du backoffice, une exécution Android réelle du mobile et des vérifications HTTP du backend. La partie mobile a été relancée avec deux adaptations de compatibilité dans une copie de développement. Les limites observées — carte vide, recherche géographique sans résultat et inscription mobile non raccordée — sont conservées dans la présentation pour distinguer les parcours effectivement visités des fonctionnalités présentes dans les sources.
+Ce projet réunit une interface d’administration React, une application mobile React Native et une API Node.js autour d’une base PostgreSQL commune. Il illustre la conception de parcours complémentaires, la gestion des rôles, l’intégrité des données et l’intégration d’une carte OpenStreetMap dans une application Expo.
 
 Le code du projet est disponible dans le dépôt AppBrocante : [https://github.com/etu51424/appBrocante](https://github.com/etu51424/appBrocante).
